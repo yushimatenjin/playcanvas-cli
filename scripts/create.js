@@ -3,6 +3,8 @@ import inquirer from "inquirer";
 import spawn from "cross-spawn";
 import puppeteer from "puppeteer";
 import chalkPipe from "chalk-pipe";
+import { login } from "./utils/browser/login";
+
 export const create = async projectName => {
   console.log(projectName);
   const auth = {
@@ -36,5 +38,5 @@ export const create = async projectName => {
   }
 
   const answer = await inquirer.prompt(questions);
-  console.log(answer);
+  await login(answer.email, answer.password);
 };
