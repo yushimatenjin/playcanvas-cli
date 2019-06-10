@@ -8,10 +8,9 @@ import { login } from "./utils/browser/login";
 export const create = async projectName => {
   console.log(projectName);
   const auth = {
-    email: process.env.PC_EMAIL,
-    password: process.env.PC_PASSWORD
+    apiKey: process.env.PC_API_KEY
   };
-  const { email, password } = auth;
+  const { apiKey } = auth;
 
   const questions = [
     {
@@ -21,22 +20,13 @@ export const create = async projectName => {
       default: projectName
     }
   ];
-  if (!email && !password) {
-    questions.unshift(
-      {
-        type: "input",
-        name: "email",
-        message: "What's your email"
-      },
-      {
-        type: "password",
-        name: "password",
-        message: "What's your password",
-        mask: "≶"
-      }
-    );
+  if (apiKey) {
+    questions.unshift({
+      type: "input",
+      name: "api key",
+      message: "What's your key"
+    });
   }
-
   const answer = await inquirer.prompt(questions);
-  await login(answer.email, answer.password);
+  console.log(answer);
 };
