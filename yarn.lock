@@ -1133,6 +1133,14 @@ caniuse-lite@^1.0.30000974:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000974.tgz#b7afe14ee004e97ce6dc73e3f878290a12928ad8"
   integrity sha512-xc3rkNS/Zc3CmpMKuczWEdY2sZgx09BkAxfvkxlAEBTqcMHeL8QnPqhKse+5sRTi3nrw2pJwToD2WvKn1Uhvww==
 
+chalk-pipe@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/chalk-pipe/-/chalk-pipe-2.0.0.tgz#628b57f973c644ee94e83113d522af1401f5aec2"
+  integrity sha512-+sflG/DXM9q47GMiNQIGKuzUr86FHrZfTO+Em6+s90jBJqCp4fv4O/ZOu2Uj4G5PVPXW6LqCqg3HJlBkPus4Pw==
+  dependencies:
+    chalk "^2.4.1"
+    css-color-names "0.0.4"
+
 chalk@^2.0.0, chalk@^2.3.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -1366,6 +1374,11 @@ crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
+
+css-color-names@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
+  integrity sha1-gIrcLnnPhHOAabZGyyDsJ762KeA=
 
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
