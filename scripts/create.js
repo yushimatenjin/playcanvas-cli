@@ -18,7 +18,7 @@ export const create = async projectName => {
       default: projectName
     }
   ];
-  if (apiKey) {
+  if (!apiKey) {
     questions.unshift({
       type: "input",
       name: "api key",
