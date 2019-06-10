@@ -1,9 +1,7 @@
 import "dotenv/config";
 import inquirer from "inquirer";
 import spawn from "cross-spawn";
-import puppeteer from "puppeteer";
 import chalkPipe from "chalk-pipe";
-import { login } from "./utils/browser/login";
 
 export const create = async projectName => {
   console.log(projectName);
