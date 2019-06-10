@@ -6,7 +6,6 @@ import { config } from "dotenv";
 export const init = async () => {
   try {
     let accessToken = process.env.PC_API_KEY;
-
     const questions = [
       {
         type: "input",
@@ -16,13 +15,13 @@ export const init = async () => {
     ];
 
     if (!accessToken) {
-      const authenticate = [
+      const authenticate = 
         {
           type: "input",
           name: "accessToken",
           message: "What's your accessToken"
         }
-      ];
+      ;
       questions.unshift(authenticate);
     } else {
     }
@@ -106,6 +105,6 @@ export const init = async () => {
     };
     console.log(configJson);
   } catch (e) {
-    console.log("Project Id is invalid.");
+    console.log("Project Id is invalid.",e);
   }
 };
