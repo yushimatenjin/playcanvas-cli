@@ -1,11 +1,11 @@
 {
-  "name": "playcanvas-cli",
-  "version": "0.0.1",
+  "name": "playcanvas-tools",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node bin/playcanvas-cli.js",
     "lint": "eslint --fix scripts",
-    "build": "babel src --out-dir built"
+    "build": "babel src --out-dir built",
+    "prepublish": "yarn build"
   },
   "files": [
     "built"
@@ -28,6 +28,7 @@
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^12.0.0",

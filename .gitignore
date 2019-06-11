@@ -80,3 +80,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+dest/
+built/
