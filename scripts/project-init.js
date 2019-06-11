@@ -8,11 +8,11 @@ export const projectInit = (
   template = "hot-reload"
 ) => {
   const templatePath = path.join(__dirname, "..", "template", template);
-  const distPath = path.join(__dirname, projectName);
+  const distPath = path.join(".", projectName);
 
   if (!fs.existsSync(distPath)) {
-    const settingsFilePath = path.join(distPath, "settings.json");
     fs.copySync(templatePath, distPath);
+    const settingsFilePath = path.join(distPath, "playcanvas.json");
     fs.writeFileSync(settingsFilePath, JSON.stringify(settingsJson), "utf8");
 
     const packageJson = path.join(distPath, "package.json");
@@ -25,9 +25,3 @@ export const projectInit = (
     console.log("This project already exists");
   }
 };
-
-// [x] フォルダをプログラムの置いてあるファイルへ作成
-// [x] settings.jsonを設置
-
-// [] フォルダをプログラムを実行した場所へ作成
-// Firebasetools
