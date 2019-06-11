@@ -3,6 +3,7 @@
   "version": "0.0.7",
   "license": "MIT",
   "scripts": {
+    "start": "babel-node src/bin/playcanvas-cli.js",
     "lint": "eslint --fix scripts",
     "build": "babel src --out-dir built",
     "prepublish": "yarn build"
@@ -14,15 +15,17 @@
     "playcanvas-cli": "built/bin/playcanvas-cli.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
     "chalk": "^2.4.2",
     "chalk-pipe": "^2.0.0",
+    "core-js": "3",
     "cross-spawn": "^6.0.5",
     "dotenv": "^8.0.0",
     "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "meow": "^5.0.0",
-    "playcanvas-node": "^1.1.0",
-    "@babel/polyfill": "^7.4.4"
+    "playcanvas-node": "^1.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
