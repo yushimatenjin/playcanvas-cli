@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import '@babel/polyfill';
 import { create, init } from "../scripts/commands";
 const args = process.argv.slice(2);
 
