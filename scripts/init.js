@@ -1,6 +1,7 @@
 import "dotenv/config";
 import inquirer from "inquirer";
 import PlayCanvas from "playcanvas-node";
+import { projectInit } from "./project-init";
 
 export const init = async () => {
   try {
@@ -97,7 +98,7 @@ export const init = async () => {
     const projectName = projectNameAnswer.inputProjectName;
     const remotePath = projectNameAnswer.remotePath;
 
-    const configJson = {
+    const settingsJson = {
       accessToken,
       scenes,
       projectId,
@@ -105,7 +106,8 @@ export const init = async () => {
       projectName,
       remotePath
     };
-    console.log(configJson);
+
+    projectInit(projectName, settingsJson);
   } catch (e) {
     console.log("---");
   }

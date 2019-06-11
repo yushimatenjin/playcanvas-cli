@@ -17,6 +17,7 @@
     "chalk-pipe": "^2.0.0",
     "cross-spawn": "^6.0.5",
     "dotenv": "^8.0.0",
+    "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "meow": "^5.0.0",
     "playcanvas-node": "^1.1.0"
