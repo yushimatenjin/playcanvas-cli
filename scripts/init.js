@@ -28,7 +28,6 @@ export const init = async () => {
     }
     const { projectId } = await inquirer.prompt(questions);
 
-    // ここでプロジェクトの一覧を取得
     const playcanvas = new PlayCanvas({ accessToken, projectId });
 
     const branches = await playcanvas.listBranches();
