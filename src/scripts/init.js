@@ -16,13 +16,12 @@ export const init = async () => {
     ];
 
     if (!accessToken) {
-      const authenticate = [
-        {
-          type: 'input',
-          name: 'accessToken',
-          message: "What's your accessToken",
-        },
-      ];
+      const authenticate = {
+        type: 'input',
+        name: 'accessToken',
+        message: "What's your accessToken",
+      };
+
       questions.unshift(authenticate);
     } else {
     }

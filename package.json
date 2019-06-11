@@ -1,6 +1,6 @@
 {
   "name": "playcanvas-tools",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "license": "MIT",
   "scripts": {
     "lint": "eslint --fix scripts",
@@ -21,14 +21,14 @@
     "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "meow": "^5.0.0",
-    "playcanvas-node": "^1.1.0"
+    "playcanvas-node": "^1.1.0",
+    "@babel/polyfill": "^7.4.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^12.0.0",
