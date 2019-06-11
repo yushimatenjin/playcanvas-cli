@@ -1,7 +1,6 @@
 import "dotenv/config";
 import inquirer from "inquirer";
 import PlayCanvas from "playcanvas-node";
-import { config } from "dotenv";
 
 export const init = async () => {
   try {
@@ -96,6 +95,8 @@ export const init = async () => {
       }
     ]);
     const projectName = projectNameAnswer.inputProjectName;
+    const remotePath = projectNameAnswer.remotePath;
+
     const configJson = {
       accessToken,
       scenes,
@@ -106,6 +107,6 @@ export const init = async () => {
     };
     console.log(configJson);
   } catch (e) {
-    console.log("Project Id is invalid.");
+    console.log("---");
   }
 };
