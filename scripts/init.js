@@ -1,7 +1,7 @@
-import "dotenv/config";
-import inquirer from "inquirer";
-import PlayCanvas from "playcanvas-node";
-import { projectInit } from "./project-init";
+import 'dotenv/config';
+import inquirer from 'inquirer';
+import PlayCanvas from 'playcanvas-node';
+import { projectInit } from './project-init';
 
 export const init = async () => {
   try {
@@ -9,19 +9,19 @@ export const init = async () => {
 
     const questions = [
       {
-        type: "input",
-        name: "projectId",
-        message: `What's your project id https://playcanvas.com/project/`
-      }
+        type: 'input',
+        name: 'projectId',
+        message: `What's your project id https://playcanvas.com/project/`,
+      },
     ];
 
     if (!accessToken) {
       const authenticate = [
         {
-          type: "input",
-          name: "accessToken",
-          message: "What's your accessToken"
-        }
+          type: 'input',
+          name: 'accessToken',
+          message: "What's your accessToken",
+        },
       ];
       questions.unshift(authenticate);
     } else {
@@ -35,16 +35,16 @@ export const init = async () => {
       const { id, name } = branch;
       return {
         value: id,
-        name: `${name} | ${id}`
+        name: `${name} | ${id}`,
       };
     });
     const branchAnswer = await inquirer.prompt([
       {
-        type: "list",
-        name: "selectedBranch",
-        message: "Please select use branche.",
-        choices: branchChoices
-      }
+        type: 'list',
+        name: 'selectedBranch',
+        message: 'Please select use branche.',
+        choices: branchChoices,
+      },
     ]);
     const branchId = branchAnswer.selectedBranch;
     const playcanvas2 = new PlayCanvas({ accessToken, projectId, branchId });
@@ -55,26 +55,25 @@ export const init = async () => {
       const { id, name } = scene;
       return {
         name: `${name} | ${id} `,
-        value: id
+        value: id,
       };
     });
 
     const sceneAnswer = await inquirer.prompt([
       {
-        type: "list",
-        name: "selectedScenes",
-        message: "Please select use scenes.",
-        choices: scenesChoices
-      }
+        type: 'list',
+        name: 'selectedScenes',
+        message: 'Please select use scenes.',
+        choices: scenesChoices,
+      },
     ]);
 
     const scenes = sceneAnswer.selectedScenes;
-
     const playcanvas3 = new PlayCanvas({
       accessToken,
       projectId,
       branchId,
-      scenes
+      scenes,
     });
 
     let remoteProjectName;
@@ -82,21 +81,21 @@ export const init = async () => {
       const pn = await playcanvas3.getPrimaryApp();
       remoteProjectName = pn.result[0].name;
     } catch (e) {
-      remoteProjectName = "my-app";
+      remoteProjectName = 'my-app';
     }
     const projectNameAnswer = await inquirer.prompt([
       {
-        type: "input",
-        name: "inputProjectName",
-        message: "Please input projectName",
-        default: remoteProjectName
+        type: 'input',
+        name: 'inputProjectName',
+        message: 'Please input projectName',
+        default: remoteProjectName,
       },
       {
-        type: "input",
-        name: "remotePath",
-        message: "",
-        default: "dev"
-      }
+        type: 'input',
+        name: 'remotePath',
+        message: '',
+        default: 'dev',
+      },
     ]);
     const projectName = projectNameAnswer.inputProjectName;
     const remotePath = projectNameAnswer.remotePath;
@@ -107,11 +106,11 @@ export const init = async () => {
       projectId,
       branchId,
       projectName,
-      remotePath
+      remotePath,
     };
 
     projectInit(projectName, settingsJson);
   } catch (e) {
-    console.log("---");
+    throw e;
   }
 };
