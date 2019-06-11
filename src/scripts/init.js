@@ -5,6 +5,9 @@ import { projectInit } from './project-init';
 
 export const init = async () => {
   try {
+    console.log(process.env.PC_API_KEY);
+    console.log(typeof process.env.PC_API_KEY);
+
     let accessToken = process.env.PC_API_KEY;
 
     const questions = [
@@ -25,9 +28,12 @@ export const init = async () => {
       questions.unshift(authenticate);
     } else {
     }
-    const { projectId } = await inquirer.prompt(questions);
+    const ans = await inquirer.prompt(questions);
 
-    const playcanvas = new PlayCanvas({ accessToken, projectId });
+    const playcanvas = new PlayCanvas({
+      accessToken: accessToken || ans.accessToken,
+      projectId: ans.projectId,
+    });
 
     const branches = await playcanvas.listBranches();
     const branchChoices = branches.result.map(branch => {
@@ -110,6 +116,6 @@ export const init = async () => {
 
     projectInit(projectName, settingsJson);
   } catch (e) {
-    throw e;
+    console.log(e);
   }
 };
