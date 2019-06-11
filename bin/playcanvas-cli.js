@@ -12,9 +12,7 @@ switch (script) {
     break;
   }
   case "init": {
-    const projectName = args[1] ? args[1] : "my-app";
-
-    init(projectName);
+    init();
     break;
   }
   default: {
