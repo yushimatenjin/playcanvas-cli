@@ -33,7 +33,7 @@ export const init = async () => {
 
     const branches = await playcanvas.listBranches();
     const branchChoices = branches.result.map(branch => {
-      const { id, name, permanent } = branch;
+      const { id, name } = branch;
       return {
         value: id,
         name: `${name} | ${id}`
@@ -78,9 +78,13 @@ export const init = async () => {
       scenes
     });
 
-    const pn = await playcanvas3.getProjectApp();
-    const remoteProjectName = pn.result[0].name;
-
+    let remoteProjectName;
+    try {
+      const pn = await playcanvas3.getPrimaryApp();
+      remoteProjectName = pn.result[0].name;
+    } catch (e) {
+      remoteProjectName = "my-app";
+    }
     const projectNameAnswer = await inquirer.prompt([
       {
         type: "input",
