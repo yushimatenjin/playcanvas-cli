@@ -1,3 +1,2 @@
-import "dotenv/config";
-import inquirer from "inquirer";
+import 'dotenv/config';
 export const create = async projectName => {};
