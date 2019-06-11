@@ -4,15 +4,14 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node bin/playcanvas-cli.js",
-    "lint": "eslint --fix scripts"
+    "lint": "eslint --fix scripts",
+    "build": "babel src --out-dir built"
   },
   "files": [
-    "bin",
-    "scripts",
-    "template"
+    "built"
   ],
   "bin": {
-    "playcanvas-cli": "bin/playcanvas-cli.js"
+    "playcanvas-cli": "built/bin/playcanvas-cli.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",
