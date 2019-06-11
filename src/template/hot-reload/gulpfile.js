@@ -1,8 +1,8 @@
-const gulp = require("gulp");
-const playcanvas = require("gulp-playcanvas");
+const gulp = require("./node_modules/gulp");
+const playcanvas = require("./node_modules/gulp-playcanvas");
 const pcOptions = require("./playcanvas");
-const pug = require("gulp-pug");
-const sass = require("gulp-sass");
+const pug = require("./node_modules/gulp-pug");
+const sass = require("./node_modules/gulp-sass");
 
 gulp.task("pug", () => {
   return gulp

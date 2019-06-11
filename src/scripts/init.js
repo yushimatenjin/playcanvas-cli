@@ -5,9 +5,6 @@ import { projectInit } from './project-init';
 
 export const init = async () => {
   try {
-    console.log(process.env.PC_API_KEY);
-    console.log(typeof process.env.PC_API_KEY);
-
     let accessToken = process.env.PC_API_KEY;
 
     const questions = [
@@ -29,10 +26,11 @@ export const init = async () => {
     } else {
     }
     const ans = await inquirer.prompt(questions);
-
+    accessToken = accessToken || ans.accessToken;
+    const projectId = ans.projectId;
     const playcanvas = new PlayCanvas({
-      accessToken: accessToken || ans.accessToken,
-      projectId: ans.projectId,
+      accessToken,
+      projectId,
     });
 
     const branches = await playcanvas.listBranches();
@@ -83,7 +81,7 @@ export const init = async () => {
 
     let remoteProjectName;
     try {
-      const pn = await playcanvas3.getPrimaryApp();
+      const pn = await playcanvas3.getProjectApp();
       remoteProjectName = pn.result[0].name;
     } catch (e) {
       remoteProjectName = 'my-app';
@@ -116,6 +114,6 @@ export const init = async () => {
 
     projectInit(projectName, settingsJson);
   } catch (e) {
-    console.log(e);
+    console.log('Not found');
   }
 };
