@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs-extra";
 
 export const projectInit = (projectName, settingsJson) => {
-  const template = "hot-reload";
+  const template = projectName;
   const templatePath = path.join(__dirname, "..", "template", template);
   const distPath = path.join(__dirname, template);
 
