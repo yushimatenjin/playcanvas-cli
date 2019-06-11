@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-import { create, init } from '../scripts/commands';
+import { create, init, login } from '../scripts/commands';
 const args = process.argv.slice(2);
 
-const scriptIndex = args.findIndex(x => x === 'create' || x === 'init');
+const scriptIndex = args.findIndex(
+  x => x === 'create' || x === 'init' || x === 'login' || x === 'logout'
+);
 const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
 switch (script) {
   case 'create': {
