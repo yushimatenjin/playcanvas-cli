@@ -1,4 +1,6 @@
 import spawn from "cross-spawn";
 import path from "path";
+import fs from "fs";
 // console.log(path.dirname)
-console.log(path.join(__dirname, "..", "template"));
+const template = "hot-reload";
+const templatePath = path.join(__dirname, "..", "template", template);
