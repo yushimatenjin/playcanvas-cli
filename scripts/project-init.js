@@ -22,6 +22,6 @@ export const projectInit = (
       });
     }
   } else {
-    console.log("This project already exists");
+    console.log("Project already exists");
   }
 };
