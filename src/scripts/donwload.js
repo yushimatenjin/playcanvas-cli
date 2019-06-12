@@ -14,10 +14,10 @@ const getDownloadUrl = async (jobId, count, playcanvas) => {
   } else if (!download_url && count === 10) {
     return null;
   } else {
+    await sleep(1000);
     return await getDownloadUrl(jobId, ++count, playcanvas);
   }
 
-  await sleep(1000);
 };
 
 export const download = async () => {
