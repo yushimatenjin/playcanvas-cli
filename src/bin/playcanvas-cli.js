@@ -13,9 +13,7 @@ const scriptIndex = args.findIndex(
 const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
 switch (script) {
   case 'create': {
-    const projectName = args[1] ? args[1] : 'my-app';
-    create(projectName);
-
+    create();
     break;
   }
   case 'init': {
