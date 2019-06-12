@@ -1,10 +1,11 @@
 import 'dotenv/config';
 import fs from 'fs-extra';
-import spawn from 'cross-spawn';
-import inquirer from 'inquirer';
 import PlayCanvas from 'playcanvas-node';
 import { sleep } from './utils/sleep';
-import request from 'request';
+import axios from 'axios';
+import extract from 'extract-zip';
+import path from 'path';
+
 export const download = async () => {
   const options = fs.readJSONSync('./playcanvas.json');
 
@@ -28,20 +29,42 @@ export const download = async () => {
     console.log('Please waiting');
     const playcanvas = new PlayCanvas(options);
     try {
-      const file = await playcanvas.downloadApp();
+      const zipFileName = `${projectName}.zip`;
+      const zipFilePath = path.join(path.resolve(''), zipFileName);
+      const projectFilePath = path.join(path.resolve(''), projectName);
 
+      if (fs.existsSync(projectFilePath)) {
+        console.log(`${projectName} is already exists`);
+        return;
+      }
+
+      const file = await playcanvas.downloadApp();
       const jobId = file.id;
+
       await sleep(5000);
       const { data } = await playcanvas.getJob(jobId);
       const { download_url } = data;
-      await request({ url: download_url, encoding: null }, function(
-        err,
-        resp,
-        body
-      ) {
-        if (err) throw err;
-        fs.writeFile(`${projectName}.zip`, body, function(err) {});
+      if (!download_url) {
+        console.log('Please one more try.');
+        return;
+      }
+
+      const res = axios({
+        url: download_url,
+        method: 'GET',
+        responseType: 'stream',
+      }).then(response =>
+        response.data.pipe(fs.createWriteStream(zipFilePath))
+      );
+      await res;
+      await sleep(15000);
+
+      await extract(zipFilePath, { dir: projectFilePath }, function(err) {
+        console.log(err);
       });
+
+      fs.removeSync(zipFilePath);
+      console.log('success!!');
     } catch (e) {
       console.log(e);
       console.log('Download is failed.');
