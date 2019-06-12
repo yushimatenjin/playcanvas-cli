@@ -66,11 +66,14 @@ export const download = async () => {
         method: 'GET',
         responseType: 'stream',
       }).then(response => {
-        response.data.pipe(fs.createWriteStream(zipFilePath));
-        extract(zipFilePath, { dir: projectFilePath }, function(err) {});
-        fs.removeSync(zipFilePath);
-        console.log(`created >>> ${projectName}`);
-        process.exit(0);
+        response.data
+          .pipe(fs.createWriteStream(zipFilePath))
+          .on('close', function() {
+            extract(zipFilePath, { dir: projectFilePath }, function(err) {
+              fs.removeSync(zipFilePath);
+              console.log(`created >>>  ${projectName}`);
+            });
+          });
       });
     } catch (e) {
       console.log(e);
