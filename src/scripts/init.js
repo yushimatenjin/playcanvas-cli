@@ -106,8 +106,8 @@ export const init = async () => {
 
     const settingsJson = {
       accessToken,
-      scenes: [scenes],
-      projectId,
+      scenes: [Number(scenes)],
+      projectId: Number(projectId),
       branchId,
       projectName,
       remotePath,
