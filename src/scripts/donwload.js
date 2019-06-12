@@ -6,6 +6,20 @@ import axios from 'axios';
 import extract from 'extract-zip';
 import path from 'path';
 
+const getDownloadUrl = async (jobId, count, playcanvas) => {
+  const { data } = await playcanvas.getJob(jobId);
+  const { download_url } = data;
+  if (download_url) {
+    return download_url;
+  } else if (!download_url && count < 10) {
+    return null;
+  } else {
+    getDownloadUrl(jobId, count++, playcanvas);
+  }
+
+  await sleep(1000);
+};
+
 export const download = async () => {
   const options = fs.readJSONSync('./playcanvas.json');
 
@@ -41,14 +55,11 @@ export const download = async () => {
       const file = await playcanvas.downloadApp();
       const jobId = file.id;
 
-      await sleep(5000);
-      const { data } = await playcanvas.getJob(jobId);
-      const { download_url } = data;
+      const download_url = await getDownloadUrl(jobId, 0, playcanvas);
       if (!download_url) {
         console.log('Please one more try.');
         return;
       }
-
       const res = axios({
         url: download_url,
         method: 'GET',
