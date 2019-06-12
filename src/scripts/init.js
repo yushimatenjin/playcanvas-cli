@@ -34,7 +34,7 @@ export const init = async () => {
     });
 
     const branches = await playcanvas.listBranches();
-    const branchChoices = branches.result.map(branch => {
+    const branchChoices = branches.map(branch => {
       const { id, name } = branch;
       return {
         value: id,
@@ -54,7 +54,7 @@ export const init = async () => {
 
     const remoteSecnes = await playcanvas2.listScenes();
 
-    const scenesChoices = remoteSecnes.result.map(scene => {
+    const scenesChoices = remoteSecnes.map(scene => {
       const { id, name } = scene;
       return {
         name: `${name} | ${id} `,
@@ -82,7 +82,7 @@ export const init = async () => {
     let remoteProjectName;
     try {
       const pn = await playcanvas3.getProjectApp();
-      remoteProjectName = pn.result[0].name;
+      remoteProjectName = pn[0].name;
     } catch (e) {
       remoteProjectName = 'my-app';
     }
@@ -105,7 +105,7 @@ export const init = async () => {
 
     const settingsJson = {
       accessToken,
-      scenes,
+      scenes: [scenes],
       projectId,
       branchId,
       projectName,

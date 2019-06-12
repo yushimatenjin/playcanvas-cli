@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node src/bin/playcanvas-cli.js",
-    "lint": "eslint --fix scripts"
+    "lint": "eslint --fix scripts",
+    "build": "babel src/bin --out-dir built/bin && babel src/scripts --out-dir built/scripts",
+    "prepublishOnly": "yarn build"
   },
   "files": [
     "built",
@@ -26,7 +28,7 @@
     "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "meow": "^5.0.0",
-    "playcanvas-node": "^1.1.1"
+    "playcanvas-node": "^1.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
