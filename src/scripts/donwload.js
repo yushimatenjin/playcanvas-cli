@@ -11,10 +11,10 @@ const getDownloadUrl = async (jobId, count, playcanvas) => {
   const { download_url } = data;
   if (download_url) {
     return download_url;
-  } else if (!download_url && count < 10) {
+  } else if (!download_url && count === 10) {
     return null;
   } else {
-    getDownloadUrl(jobId, count++, playcanvas);
+    return await getDownloadUrl(jobId, ++count, playcanvas);
   }
 
   await sleep(1000);
@@ -56,6 +56,7 @@ export const download = async () => {
       const jobId = file.id;
 
       const download_url = await getDownloadUrl(jobId, 0, playcanvas);
+
       if (!download_url) {
         console.log('Please one more try.');
         return;
@@ -71,7 +72,7 @@ export const download = async () => {
       await sleep(15000);
 
       await extract(zipFilePath, { dir: projectFilePath }, function(err) {
-        console.log(err);
+        // console.log(err);
       });
 
       fs.removeSync(zipFilePath);
