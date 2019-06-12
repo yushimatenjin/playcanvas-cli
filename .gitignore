@@ -82,3 +82,4 @@ typings/
 .dynamodb/
 dest/
 built/
+playcanvas.json
