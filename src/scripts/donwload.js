@@ -61,23 +61,17 @@ export const download = async () => {
         console.log('Please one more try.');
         return;
       }
-      const res = axios({
+      axios({
         url: download_url,
         method: 'GET',
         responseType: 'stream',
-      }).then(response =>
-        response.data.pipe(fs.createWriteStream(zipFilePath))
-      );
-      await res;
-      await sleep(15000);
-
-      await extract(zipFilePath, { dir: projectFilePath }, function(err) {
-        // console.log(err);
+      }).then(response => {
+        response.data.pipe(fs.createWriteStream(zipFilePath));
+        extract(zipFilePath, { dir: projectFilePath }, function(err) {});
+        fs.removeSync(zipFilePath);
+        console.log(`created >>> ${projectName}`);
+        process.exit(0);
       });
-
-      fs.removeSync(zipFilePath);
-      console.log('success!!');
-      process.exit(0);
     } catch (e) {
       console.log(e);
       console.log('Download is failed.');
