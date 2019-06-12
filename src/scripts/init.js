@@ -1,7 +1,8 @@
 import 'dotenv/config';
 import inquirer from 'inquirer';
 import PlayCanvas from 'playcanvas-node';
-import { projectInit } from './project-init';
+import path from 'path';
+import fs from 'fs-extra';
 
 export const init = async () => {
   try {
@@ -111,9 +112,11 @@ export const init = async () => {
       projectName,
       remotePath,
     };
-
-    projectInit(projectName, settingsJson);
+    const distPath = path.join('.');
+    const settingsFilePath = path.join(distPath, 'playcanvas.json');
+    fs.writeFileSync(settingsFilePath, JSON.stringify(settingsJson), 'utf8');
+    console.log('created', `${distPath} > playcanvas.json`);
   } catch (e) {
-    console.log('Not found');
+    console.log(e);
   }
 };
