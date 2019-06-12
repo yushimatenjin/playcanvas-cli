@@ -77,6 +77,7 @@ export const download = async () => {
 
       fs.removeSync(zipFilePath);
       console.log('success!!');
+      process.exit(0);
     } catch (e) {
       console.log(e);
       console.log('Download is failed.');
