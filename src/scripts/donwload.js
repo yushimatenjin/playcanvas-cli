@@ -6,6 +6,7 @@ import axios from 'axios';
 import extract from 'extract-zip';
 import path from 'path';
 import { promisify } from 'util';
+import ProgressBar from 'progress';
 
 const getDownloadUrl = async (jobId, count, playcanvas) => {
   const { data } = await playcanvas.getJob(jobId);
@@ -22,7 +23,9 @@ const getDownloadUrl = async (jobId, count, playcanvas) => {
 
 export const download = async () => {
   const options = fs.readJSONSync('./playcanvas.json');
-
+  const progress = new ProgressBar('downloading [:bar] :percent :etas', {
+    total: 50,
+  });
   const {
     accessToken,
     scenes,
@@ -40,7 +43,6 @@ export const download = async () => {
     projectName ||
     remotePath
   ) {
-    console.log('Please wait');
     const playcanvas = new PlayCanvas(options);
     try {
       const zipFileName = `${projectName}.zip`;
@@ -51,9 +53,10 @@ export const download = async () => {
         console.log(`${projectName} is already exists`);
         return;
       }
-
+      progress.tick(5);
       const file = await playcanvas.downloadApp();
       const jobId = file.id;
+      progress.tick(10);
 
       const download_url = await getDownloadUrl(jobId, 0, playcanvas);
 
@@ -61,6 +64,7 @@ export const download = async () => {
         console.log('Please one more try.');
         return;
       }
+
       const { data } = await axios({
         url: download_url,
         method: 'GET',
@@ -70,12 +74,17 @@ export const download = async () => {
       await data
         .pipe(fs.createWriteStream(zipFilePath))
         .on('close', async () => {
+          progress.tick(15);
+
           const unzip = promisify(extract);
           await unzip(zipFilePath, { dir: projectFilePath });
+          progress.tick(20);
+
           fs.removeSync(zipFilePath);
           console.log(`created >>>  ${projectName}`);
         });
     } catch (e) {
+      console.log(e);
       console.log('Download failed.');
     }
   } else {
