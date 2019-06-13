@@ -5,6 +5,7 @@ import { sleep } from './utils/sleep';
 import axios from 'axios';
 import extract from 'extract-zip';
 import path from 'path';
+import { promisify } from 'util';
 
 const getDownloadUrl = async (jobId, count, playcanvas) => {
   const { data } = await playcanvas.getJob(jobId);
@@ -17,7 +18,6 @@ const getDownloadUrl = async (jobId, count, playcanvas) => {
     await sleep(1000);
     return await getDownloadUrl(jobId, ++count, playcanvas);
   }
-
 };
 
 export const download = async () => {
@@ -40,7 +40,7 @@ export const download = async () => {
     projectName ||
     remotePath
   ) {
-    console.log('Please waiting');
+    console.log('Please wait');
     const playcanvas = new PlayCanvas(options);
     try {
       const zipFileName = `${projectName}.zip`;
@@ -61,25 +61,24 @@ export const download = async () => {
         console.log('Please one more try.');
         return;
       }
-      axios({
+      const { data } = await axios({
         url: download_url,
         method: 'GET',
         responseType: 'stream',
-      }).then(response => {
-        response.data
-          .pipe(fs.createWriteStream(zipFilePath))
-          .on('close', function() {
-            extract(zipFilePath, { dir: projectFilePath }, function(err) {
-              fs.removeSync(zipFilePath);
-              console.log(`created >>>  ${projectName}`);
-            });
-          });
       });
+
+      await data
+        .pipe(fs.createWriteStream(zipFilePath))
+        .on('close', async () => {
+          const unzip = promisify(extract);
+          await unzip(zipFilePath, { dir: projectFilePath });
+          fs.removeSync(zipFilePath);
+          console.log(`created >>>  ${projectName}`);
+        });
     } catch (e) {
-      console.log(e);
-      console.log('Download is failed.');
+      console.log('Download failed.');
     }
   } else {
-    console.log('Please, run "playcanvas-cli init"');
+    console.log('Please run "playcanvas-cli init"');
   }
 };
