@@ -90,3 +90,4 @@ export const download = async () => {
     console.log('Please run "playcanvas-cli init"');
   }
 };
+// ≶
