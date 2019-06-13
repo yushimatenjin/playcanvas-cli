@@ -33,7 +33,8 @@
     "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "meow": "^5.0.0",
-    "playcanvas-node": "^1.1.5"
+    "playcanvas-node": "^1.1.5",
+    "progress": "^2.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
