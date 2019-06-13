@@ -75,7 +75,6 @@ export const download = async () => {
         .pipe(fs.createWriteStream(zipFilePath))
         .on('close', async () => {
           progress.tick(15);
-
           const unzip = promisify(extract);
           await unzip(zipFilePath, { dir: projectFilePath });
           progress.tick(20);
