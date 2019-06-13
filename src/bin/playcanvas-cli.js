@@ -1,5 +1,31 @@
 #!/usr/bin/env node
 import { create, init, login, download } from '../scripts/commands';
+import meow from 'meow';
+
+const cli = meow(
+  `
+	Usage
+	  $ foo <input>
+
+	Options
+	  --rainbow, -r  Include a rainbow
+
+	Examples
+	  $ foo unicorns --rainbow
+	  🌈 unicorns 🌈
+`,
+  {
+    flags: {
+      rainbow: {
+        type: 'string',
+        alias: 'r',
+      },
+    },
+  }
+);
+
+console.log(cli.input[0], cli.flags);
+
 const args = process.argv.slice(2);
 
 const scriptIndex = args.findIndex(
