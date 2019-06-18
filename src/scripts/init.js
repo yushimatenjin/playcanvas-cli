@@ -5,6 +5,40 @@ import path from 'path';
 import fs from 'fs-extra';
 
 export const init = async options => {
+  {
+    const {
+      accessToken,
+      scenes,
+      projectId,
+      branchId,
+      projectName,
+      remotePath,
+    } = options;
+
+    if (
+      accessToken &&
+      scenes &&
+      projectId &&
+      branchId &&
+      projectName &&
+      remotePath
+    ) {
+      const settingsJson = {
+        accessToken,
+        scenes: [Number(scenes)],
+        projectId: Number(projectId),
+        branchId,
+        projectName,
+        remotePath,
+      };
+
+      const distPath = path.join('.');
+      const settingsFilePath = path.join(distPath, 'playcanvas.json');
+      fs.writeFileSync(settingsFilePath, JSON.stringify(settingsJson), 'utf8');
+      console.log('created', `${distPath} > playcanvas.json`);
+      return;
+    }
+  }
   try {
     let accessToken = process.env.PC_API_KEY;
 

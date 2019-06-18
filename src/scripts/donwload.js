@@ -36,11 +36,11 @@ export const download = async () => {
   } = options;
 
   if (
-    accessToken ||
-    scenes ||
-    projectId ||
-    branchId ||
-    projectName ||
+    accessToken &&
+    scenes &&
+    projectId &&
+    branchId &&
+    projectName &&
     remotePath
   ) {
     const playcanvas = new PlayCanvas(options);
