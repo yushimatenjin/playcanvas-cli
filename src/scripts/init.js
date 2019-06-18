@@ -150,6 +150,7 @@ export const init = async options => {
     const settingsFilePath = path.join(distPath, 'playcanvas.json');
     fs.writeFileSync(settingsFilePath, JSON.stringify(settingsJson), 'utf8');
     console.log('created', `${distPath} > playcanvas.json`);
+    return;
   } catch (e) {
     console.log(e);
   }

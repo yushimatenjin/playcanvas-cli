@@ -24,6 +24,7 @@ const getDownloadUrl = async (jobId, count, playcanvas) => {
 export const download = async () => {
   const options = fs.readJSONSync('./playcanvas.json');
   const progress = new ProgressBar('downloading [:bar] :percent :etas', {
+    complete: '≶',
     total: 50,
   });
   const {
