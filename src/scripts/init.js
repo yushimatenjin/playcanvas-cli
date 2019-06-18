@@ -23,7 +23,7 @@ export const init = async options => {
       projectName &&
       remotePath
     ) {
-      const settingsJson = {
+      const settings = {
         accessToken,
         scenes: [Number(scenes)],
         projectId: Number(projectId),
@@ -34,7 +34,7 @@ export const init = async options => {
 
       const distPath = path.join('.');
       const settingsFilePath = path.join(distPath, 'playcanvas.json');
-      fs.writeFileSync(settingsFilePath, JSON.stringify(settingsJson), 'utf8');
+      fs.writeFileSync(settingsFilePath, JSON.stringify(settings), 'utf8');
       console.log('created', `${distPath} > playcanvas.json`);
       return;
     }
