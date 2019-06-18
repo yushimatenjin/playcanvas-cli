@@ -4,7 +4,7 @@ import PlayCanvas from 'playcanvas-node';
 import path from 'path';
 import fs from 'fs-extra';
 
-export const init = async () => {
+export const init = async options => {
   try {
     let accessToken = process.env.PC_API_KEY;
 
@@ -46,7 +46,7 @@ export const init = async () => {
       {
         type: 'list',
         name: 'selectedBranch',
-        message: 'Please select use branche.',
+        message: 'Please select a branch.',
         choices: branchChoices,
       },
     ]);
@@ -67,7 +67,7 @@ export const init = async () => {
       {
         type: 'list',
         name: 'selectedScenes',
-        message: 'Please select use scenes.',
+        message: 'Please select a scence.',
         choices: scenesChoices,
       },
     ]);
@@ -91,7 +91,7 @@ export const init = async () => {
       {
         type: 'input',
         name: 'inputProjectName',
-        message: 'Please input projectName',
+        message: 'Please input a projectName',
         default: remoteProjectName,
       },
       {
