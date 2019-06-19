@@ -1,6 +1,6 @@
 {
   "name": "playcanvas-tools",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "license": "MIT",
   "scripts": {
     "start": "babel-node src/bin/playcanvas-cli.js",
@@ -33,7 +33,7 @@
     "fs-extra": "^8.0.1",
     "inquirer": "^6.3.1",
     "meow": "^5.0.0",
-    "playcanvas-node": "^1.1.7",
+    "playcanvas-node": "latest",
     "progress": "^2.0.3"
   },
   "devDependencies": {
