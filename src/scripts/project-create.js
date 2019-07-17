@@ -14,13 +14,6 @@ export const projectInit = (
     fs.copySync(templatePath, distPath);
     const settingsFilePath = path.join(distPath, 'playcanvas.json');
     fs.writeFileSync(settingsFilePath, JSON.stringify(settingsJson), 'utf8');
-
-    // const packageJson = path.join(distPath, 'package.json');
-    // if (fs.existsSync(packageJson)) {
-    //   spawn('npm', ['install', '--prefix', distPath], {
-    //     stdio: 'inherit',
-    //   });
-    // }
   } else {
     console.log('Project already exists');
   }
