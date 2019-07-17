@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { create, init, login, download } from '../scripts/commands';
+import { create, init, login, download, upload } from '../scripts/commands';
 import meow from 'meow';
 
 const cli = meow(
@@ -50,21 +50,13 @@ const cli = meow(
         type: 'string',
         alias: 'r',
       },
+      url: {
+        type: 'string',
+        alias: "u"
+      }
     },
   }
 );
-
-// const args = process.argv.slice(2);
-
-// const scriptIndex = args.findIndex(
-//   x =>
-//     x === 'create' ||
-//     x === 'init' ||
-//     x === 'download' ||
-//     x === 'login' ||
-//     x === 'logout'
-// );
-// const script = scriptIndex === -1 ? args[0] : args[scriptIndex];
 
 const script = cli.input[0];
 
@@ -79,6 +71,10 @@ switch (script) {
   }
   case 'download': {
     download();
+    break;
+  }
+  case 'upload': {
+    upload(cli.flags.url);
     break;
   }
   default: {
