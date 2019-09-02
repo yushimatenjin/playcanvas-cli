@@ -28,7 +28,7 @@ export const sw = name => {
   urls.push(...assetsUrls);
 
   const urlsToChache = urls
-    .map(i => i && `\t"${i}"`)
+    .map(i => i && `\t"./${i}"`)
     .filter(i => i)
     .sort();
 
