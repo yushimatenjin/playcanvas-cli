@@ -10,12 +10,11 @@ export const sw = name => {
     .toString()
     .split('\n');
 
-  if (
-    !currentDir.includes('playcanvas-stable.min.js')
-  ) {
+  if (!currentDir.includes('playcanvas-stable.min.js')) {
     console.log('Not found PlayCanvas files.');
     return;
   }
+  const urls = [];
 
   urls.push(...currentDir);
 
