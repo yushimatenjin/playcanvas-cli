@@ -58,5 +58,5 @@ export const sw = name => {
     });
     `;
 
-  fs.writeFileSync('./serviceWoker.js', output);
+  fs.writeFileSync('./serviceWorker.js', output);
 };
