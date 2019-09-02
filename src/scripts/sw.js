@@ -33,7 +33,7 @@ export const sw = name => {
     .sort();
 
   const output = `
-    var CACHE_NAME = ${name};
+    var CACHE_NAME = '${name}';
     var urlsToCache = [
     ${urlsToChache.join(',\n')}
     ];
