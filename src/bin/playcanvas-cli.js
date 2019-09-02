@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { create, init, login, download, upload } from '../scripts/commands';
+import { create, init, login, download, upload, sw } from '../scripts/commands';
 import meow from 'meow';
 
 const cli = meow(
@@ -52,8 +52,11 @@ const cli = meow(
       },
       url: {
         type: 'string',
-        alias: "u"
-      }
+        alias: 'u',
+      },
+      name: {
+        type: 'string',
+      },
     },
   }
 );
@@ -75,6 +78,10 @@ switch (script) {
   }
   case 'upload': {
     upload(cli.flags.url);
+    break;
+  }
+  case 'sw': {
+    sw(cli.flags.name);
     break;
   }
   default: {
