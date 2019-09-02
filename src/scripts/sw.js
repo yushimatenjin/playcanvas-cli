@@ -11,7 +11,6 @@ export const sw = name => {
     .split('\n');
 
   if (
-    !currentDir.includes('__game-scripts.js') ||
     !currentDir.includes('playcanvas-stable.min.js')
   ) {
     console.log('Not found PlayCanvas files.');
