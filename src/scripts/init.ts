@@ -7,7 +7,7 @@ import {PlayCanvasOptions,Branch,Scene } from '../types/data'
 
 
 
-export const init = async (options: PlayCanvasOptions | any) => {
+export const init = async (options?: PlayCanvasOptions | any) => {
   {
     const {
       accessToken,
