@@ -1,10 +1,9 @@
-import spawn from 'cross-spawn';
 import path from 'path';
 import fs from 'fs-extra';
 
 export const projectInit = (
-  projectName,
-  settingsJson,
+  projectName: string,
+  settingsJson: Object,
   template = 'hot-reload'
 ) => {
   const templatePath = path.join(__dirname, '..', 'template', template);

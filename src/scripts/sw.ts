@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import fs from "fs";
 
-export const sw = name => {
+export const sw = (name: string) => {
   if (!name) {
     console.log("Name is requried.");
     return;
