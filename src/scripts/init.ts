@@ -19,6 +19,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
     } = options;
 
     if (
+      options &&
       accessToken &&
       scenes &&
       projectId &&
