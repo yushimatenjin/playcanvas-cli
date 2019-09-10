@@ -1,29 +1,35 @@
-import { execSync } from 'child_process';
-import fs from 'fs';
+import { execSync } from "child_process";
+import fs from "fs";
 
 export const sw = name => {
   if (!name) {
-    console.log('Name is requried.');
+    console.log("Name is requried.");
     return;
   }
-  const currentDir = execSync('ls -1')
-    .toString()
-    .split('\n');
 
-  if (!currentDir.includes('playcanvas-stable.min.js')) {
-    console.log('Not found PlayCanvas files.');
+  const currentDir = execSync("ls -1")
+    .toString()
+    .split("\n");
+
+  if (!currentDir.includes("playcanvas-stable.min.js")) {
+    console.log("Not found PlayCanvas files.");
     return;
   }
   const urls = [];
 
   urls.push(...currentDir);
 
-  const assestsDirectory = execSync('ls files/**/**/*/ -1');
+  let assestsDirectory;
+  if (process.platform === "win32") {
+    assestsDirectory = execSync("ls files/**/**/*/ -1");
+  } else {
+    assestsDirectory = execSync("ls files/**/**/*/");
+  }
   const assetsUrls = assestsDirectory
     .toString()
-    .replace(/:\n/g, '')
-    .split('\n\n')
-    .map(i => i.replace(/\n/g, ''));
+    .replace(/:\n/g, "")
+    .split("\n\n")
+    .map(i => i.replace(/\n/g, ""));
 
   urls.push(...assetsUrls);
 
@@ -35,7 +41,7 @@ export const sw = name => {
   const output = `
     var CACHE_NAME = '${name}';
     var urlsToCache = [
-    ${urlsToChache.join(',\n')}
+    ${urlsToChache.join(",\n")}
     ];
     
     self.addEventListener("install", function(event) {
@@ -58,5 +64,5 @@ export const sw = name => {
     });
     `;
 
-  fs.writeFileSync('./serviceWorker.js', output);
+  fs.writeFileSync("./serviceWorker.js", output);
 };
