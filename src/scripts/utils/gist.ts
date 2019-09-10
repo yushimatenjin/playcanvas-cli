@@ -1,4 +1,4 @@
-import { urlJoin, doc } from "../helper";
+import { urlJoin, doc } from "../helpers";
 export default async (url: string) => {
   const document = await doc(url);
   const blobNames = Object.values(
