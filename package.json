@@ -3,9 +3,10 @@
   "version": "0.4.1",
   "license": "MIT",
   "scripts": {
-    "start": "tsc --project .",
+    "start": "yarn copy-template && tsc --project . && node ./built/bin/playcanvas-cli.js",
     "lint": "eslint --fix scripts",
-    "build": "babel src/bin --out-dir built/bin && babel src/scripts --out-dir built/scripts",
+    "build": "yarn copy-template && tsc --project .",
+    "copy-template": "rm -rf built && mkdir built && cp -R src/template/ built/template",
     "prepublishOnly": "yarn build"
   },
   "files": [
