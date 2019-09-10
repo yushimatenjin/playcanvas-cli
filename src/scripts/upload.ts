@@ -2,7 +2,7 @@ import axios from 'axios';
 import fs from 'fs-extra';
 import PlayCanvas from 'playcanvas-node';
 import path from 'path';
-export const upload = async download_url => {
+export const upload = async (download_url: string) => {
   const options = require(path.join(process.cwd(), './', 'playcanvas.json'));
   const playcanvas = new PlayCanvas(options);
   const { data } = await axios({

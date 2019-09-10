@@ -3,8 +3,11 @@ import inquirer from 'inquirer';
 import PlayCanvas from 'playcanvas-node';
 import path from 'path';
 import fs from 'fs-extra';
+import {PlayCanvasOptions,Branch,Scene } from '../types/data'
 
-export const init = async options => {
+
+
+export const init = async (options: PlayCanvasOptions | any) => {
   {
     const {
       accessToken,
@@ -61,15 +64,15 @@ export const init = async options => {
     } else {
     }
     const ans = await inquirer.prompt(questions);
-    accessToken = accessToken || ans.accessToken;
-    const projectId = ans.projectId;
+    accessToken = accessToken || ans.accessToken as string;
+    const projectId = ans.projectId as number;
     const playcanvas = new PlayCanvas({
       accessToken,
       projectId,
     });
 
     const branches = await playcanvas.listBranches();
-    const branchChoices = branches.map(branch => {
+    const branchChoices = branches.map((branch:Branch) => {
       const { id, name } = branch;
       return {
         value: id,
@@ -89,7 +92,7 @@ export const init = async options => {
 
     const remoteSecnes = await playcanvas2.listScenes();
 
-    const scenesChoices = remoteSecnes.map(scene => {
+    const scenesChoices = remoteSecnes.map((scene: Scene) => {
       const { id, name } = scene;
       return {
         name: `${name} | ${id} `,

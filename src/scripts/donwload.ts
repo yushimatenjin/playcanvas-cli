@@ -8,7 +8,7 @@ import path from 'path';
 import { promisify } from 'util';
 import ProgressBar from 'progress';
 
-const getDownloadUrl = async (jobId, count, playcanvas) => {
+const getDownloadUrl = async (jobId: number, count:number , playcanvas: PlayCanvas): Promise<string | null>  => {
   const { data } = await playcanvas.getJob(jobId);
   const { download_url } = data;
   if (download_url) {

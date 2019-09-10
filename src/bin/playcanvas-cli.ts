@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { create, init, login, download, upload, sw } from '../scripts/commands';
+import { create, init, download, upload, sw } from '../scripts/commands';
 import meow from 'meow';
 
 const cli = meow(
