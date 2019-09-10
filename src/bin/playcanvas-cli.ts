@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { create, init, download, upload, sw } from '../scripts/commands';
-import meow from 'meow';
+import { create, init, download, upload, sw, copy } from "../scripts/commands";
+import meow from "meow";
 
 const cli = meow(
   `
@@ -27,60 +27,64 @@ const cli = meow(
   {
     flags: {
       accessToken: {
-        type: 'string',
-        alias: 't',
+        type: "string",
+        alias: "t"
       },
       projectId: {
-        type: 'string',
-        alias: 'p',
+        type: "string",
+        alias: "p"
       },
       scenes: {
-        type: 'string',
-        alias: 's',
+        type: "string",
+        alias: "s"
       },
       branchId: {
-        type: 'string',
-        alias: 'b',
+        type: "string",
+        alias: "b"
       },
       projectName: {
-        type: 'string',
-        alias: 'n',
+        type: "string",
+        alias: "n"
       },
       remotePath: {
-        type: 'string',
-        alias: 'r',
+        type: "string",
+        alias: "r"
       },
       url: {
-        type: 'string',
-        alias: 'u',
+        type: "string",
+        alias: "u"
       },
       name: {
-        type: 'string',
-      },
-    },
+        type: "string"
+      }
+    }
   }
 );
 
 const script = cli.input[0];
 
 switch (script) {
-  case 'create': {
+  case "create": {
     create();
     break;
   }
-  case 'init': {
+  case "init": {
     init(cli.flags);
     break;
   }
-  case 'download': {
+  case "download": {
     download();
     break;
   }
-  case 'upload': {
+  case "upload": {
     upload(cli.flags.url);
     break;
   }
-  case 'sw': {
+  case "copy": {
+    copy(cli.flags.url);
+    break;
+  }
+  case "sw": {
     sw(cli.flags.name);
     break;
   }
