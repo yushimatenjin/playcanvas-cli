@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import fs from 'fs-extra';
 import PlayCanvas from 'playcanvas-node';
-import { sleep } from './utils/sleep';
+import { sleep } from './helpers/sleep';
 import axios from 'axios';
 import extract from 'extract-zip';
 import path from 'path';
