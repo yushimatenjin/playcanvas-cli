@@ -1,6 +1,6 @@
 {
   "name": "playcanvas-tools",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "license": "MIT",
   "scripts": {
     "start": "yarn copy-template && tsc --project . && node ./built/bin/playcanvas-cli.js",
@@ -34,6 +34,8 @@
     "extract-zip": "^1.6.7",
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.0",
+    "isomorphic-crypto": "^3.0.0",
+    "jsdom": "^15.1.1",
     "meow": "^5.0.0",
     "playcanvas-node": "1.3.0",
     "progress": "^2.0.3"
@@ -44,8 +46,10 @@
     "@babel/node": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@types/axios": "^0.14.0",
     "@types/extract-zip": "^1.6.2",
     "@types/inquirer": "^6.5.0",
+    "@types/jsdom": "^12.2.4",
     "@types/meow": "^5.0.0",
     "@types/node": "^12.7.4",
     "@types/progress": "^2.0.3",
@@ -57,6 +61,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "prettier": "^1.18.2",
-    "prettier-eslint": "^9.0.0"
+    "prettier-eslint": "^9.0.0",
+    "ts-node-dev": "^1.0.0-pre.42",
+    "typescript": "^3.6.2"
   }
 }
