@@ -5,3 +5,4 @@ export default (string: string) => {
   hash.write(string);
   return hash.digest("hex");
 };
+

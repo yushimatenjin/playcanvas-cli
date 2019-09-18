@@ -1,14 +1,18 @@
-import 'dotenv/config';
-import fs from 'fs-extra';
-import PlayCanvas from 'playcanvas-node';
-import { sleep } from './helpers/sleep';
-import axios from 'axios';
-import extract from 'extract-zip';
-import path from 'path';
-import { promisify } from 'util';
-import ProgressBar from 'progress';
+import "dotenv/config";
+import fs from "fs-extra";
+import PlayCanvas from "playcanvas-node";
+import { sleep } from "./helpers/sleep";
+import axios from "axios";
+import extract from "extract-zip";
+import path from "path";
+import { promisify } from "util";
+import ProgressBar from "progress";
 
-const getDownloadUrl = async (jobId: number, count:number , playcanvas: PlayCanvas): Promise<string | null>  => {
+const getDownloadUrl = async (
+  jobId: number,
+  count: number,
+  playcanvas: PlayCanvas
+): Promise<string | null> => {
   const { data } = await playcanvas.getJob(jobId);
   const { download_url } = data;
   if (download_url) {
@@ -22,10 +26,10 @@ const getDownloadUrl = async (jobId: number, count:number , playcanvas: PlayCanv
 };
 
 export const download = async () => {
-  const options = fs.readJSONSync('./playcanvas.json');
-  const progress = new ProgressBar('downloading [:bar] :percent :etas', {
-    complete: '≶',
-    total: 50,
+  const options = fs.readJSONSync("./playcanvas.json");
+  const progress = new ProgressBar("downloading [:bar] :percent :etas", {
+    complete: "≶",
+    total: 50
   });
   const {
     accessToken,
@@ -33,7 +37,7 @@ export const download = async () => {
     projectId,
     branchId,
     projectName,
-    remotePath,
+    remotePath
   } = options;
 
   if (
@@ -47,8 +51,8 @@ export const download = async () => {
     const playcanvas = new PlayCanvas(options);
     try {
       const zipFileName = `${projectName}.zip`;
-      const zipFilePath = path.join(path.resolve(''), zipFileName);
-      const projectFilePath = path.join(path.resolve(''), projectName);
+      const zipFilePath = path.join(path.resolve(""), zipFileName);
+      const projectFilePath = path.join(path.resolve(""), projectName);
 
       if (fs.existsSync(projectFilePath)) {
         console.log(`${projectName} is already exists`);
@@ -62,19 +66,19 @@ export const download = async () => {
       const download_url = await getDownloadUrl(jobId, 0, playcanvas);
 
       if (!download_url) {
-        console.log('Please one more try.');
+        console.log("Please one more try.");
         return;
       }
 
       const { data } = await axios({
         url: download_url,
-        method: 'GET',
-        responseType: 'stream',
+        method: "GET",
+        responseType: "stream"
       });
 
       await data
         .pipe(fs.createWriteStream(zipFilePath))
-        .on('close', async () => {
+        .on("close", async () => {
           progress.tick(15);
           const unzip = promisify(extract);
           await unzip(zipFilePath, { dir: projectFilePath });
@@ -85,7 +89,7 @@ export const download = async () => {
         });
     } catch (e) {
       console.log(e);
-      console.log('Download failed.');
+      console.log("Download failed.");
     }
   } else {
     console.log('Please run "playcanvas-cli init"');
