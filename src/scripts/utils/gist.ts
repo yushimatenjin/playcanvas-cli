@@ -10,7 +10,7 @@ export default async (url: string) => {
       if (!textContent) return;
       return urlJoin(url, "raw", textContent.trim());
     })
-    .filter(i => i) as Array<string>
+    .filter(i => i) as Array<string>;
 
   return fileUrls;
 };

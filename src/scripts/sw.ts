@@ -34,7 +34,7 @@ export const sw = (name: string) => {
   urls.push(...assetsUrls);
 
   const urlsToChache = urls
-    .map(i => i && i !== 'files' && `\t"./${i}"`)
+    .map(i => i && i !== "files" && `\t"./${i}"`)
     .filter(i => i)
     .sort();
 

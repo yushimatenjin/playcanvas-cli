@@ -1,2 +1,2 @@
-import gist from "./gist"
-export {gist}
+import gist from "./gist";
+export { gist };
