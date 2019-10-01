@@ -1,25 +1,15 @@
 ## Installation
 `yarn global add playcanvas-tools`
 
-## 
+##  
 
-1. Create config file. 
-```
+Create config file(`playcanvas.json`)
+```bash
 playcanvas-cli init
-
-# playcanvas.json
-# {
-#   "accessToken": "",
-#   "scenes": [],
-#   "projectId": "",
-#   "branchId": "",
-#   "projectName": "",
-#   "remotePath": ""
-# }
 ```
+
 
 Downlaod Project.
-
 ```
 playcanvas-cli download
 ```
