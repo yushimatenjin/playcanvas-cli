@@ -6,6 +6,9 @@
   "bin": {
     "playcanvas-cli": "built/bin/playcanvas-cli.js"
   },
+  "bugs": {
+    "url": "https://github.com/yushimatenjin/playcanvas-cli/issues"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "dotenv": "^8.1.0",
@@ -48,6 +51,7 @@
     "bin",
     "template"
   ],
+  "homepage": "https://yushimatenjin.github.io/playcanvas-cli/",
   "keywords": [
     "REST API",
     "deploy",
