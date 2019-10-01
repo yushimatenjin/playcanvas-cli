@@ -1,7 +1,28 @@
 ## Installation
 `yarn global add playcanvas-tools`
 
-### Usage
+##  
+
+Create config file(`playcanvas.json`)
+```bash
+playcanvas-cli init
+```
+
+
+Downlaod Project.
+```
+playcanvas-cli download
+```
+
+Create ServiceWorker.
+```
+playcanvas-cli sw
+```
+
+
+
+
+#### circle ci
 ```
 $ playcanvas-cli <input>
 Options(required)
