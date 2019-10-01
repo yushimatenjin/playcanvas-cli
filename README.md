@@ -3,9 +3,19 @@
 
 ## 
 
-
+1. Create config file. 
 ```
 playcanvas-cli init
+
+# playcanvas.json
+# {
+#   "accessToken": "",
+#   "scenes": [],
+#   "projectId": "",
+#   "branchId": "",
+#   "projectName": "",
+#   "remotePath": ""
+# }
 ```
 
 Downlaod Project.
