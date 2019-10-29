@@ -24,7 +24,6 @@ export const create = async () => {
       };
 
       questions.unshift(authenticate);
-    } else {
     }
     const ans = await inquirer.prompt(questions);
     accessToken = accessToken || (ans.accessToken as string);
