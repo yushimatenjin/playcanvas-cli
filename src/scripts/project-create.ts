@@ -3,7 +3,7 @@ import fs from "fs-extra";
 
 export const projectInit = (
   projectName: string,
-  settingsJson: Object,
+  settingsJson: Record<string, any>,
   template = "hot-reload"
 ) => {
   const templatePath = path.join(__dirname, "..", "template", template);

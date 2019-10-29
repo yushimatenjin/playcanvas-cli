@@ -60,7 +60,6 @@ export const init = async (options?: PlayCanvasOptions | any) => {
       };
 
       questions.unshift(authenticate);
-    } else {
     }
     const ans = await inquirer.prompt(questions);
     accessToken = accessToken || (ans.accessToken as string);
