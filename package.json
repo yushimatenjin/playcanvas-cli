@@ -16,9 +16,9 @@
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.0",
     "isomorphic-crypto": "^3.0.0",
-    "jsdom": "^15.2.0",
+    "jsdom": "^15.2.1",
     "meow": "^5.0.0",
-    "playcanvas-node": "1.4.5",
+    "playcanvas-node": "1.4.6",
     "progress": "^2.0.3"
   },
   "devDependencies": {
@@ -28,11 +28,11 @@
     "@types/inquirer": "^6.5.0",
     "@types/jsdom": "^12.2.4",
     "@types/meow": "^5.0.0",
-    "@types/node": "^12.11.7",
+    "@types/node": "^12.12.7",
     "@types/playcanvas": "^1.23.0",
     "@types/progress": "^2.0.3",
-    "@typescript-eslint/eslint-plugin": "^2.6.0",
-    "@typescript-eslint/parser": "^2.6.0",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
@@ -41,11 +41,11 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "playcanvas": "^1.23.4",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.0",
-    "ts-node-dev": "^1.0.0-pre.43",
-    "typedoc": "^0.15.0",
-    "typescript": "^3.6.4"
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typedoc": "^0.15.1",
+    "typescript": "^3.7.2"
   },
   "files": [
     "built",
