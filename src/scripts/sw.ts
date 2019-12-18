@@ -1,5 +1,5 @@
-import { execSync } from "child_process";
-import fs from "fs";
+import fs from 'fs'
+import { readdirRecursively } from './helpers/readdir'
 
 export const sw = (name: string) => {
   if (!name) {
@@ -7,11 +7,13 @@ export const sw = (name: string) => {
     return;
   }
 
-  const currentDir = execSync("ls -1")
-    .toString()
-    .split("\n");
+  const path = process.cwd();
 
-  if (!currentDir.includes("playcanvas-stable.min.js")) {
+  const currentDir = fs.readdirSync(path, { withFileTypes: true }).filter(file => !file.isDirectory())
+    .map(file => `./${file.name}`);
+
+    
+  if (!currentDir.includes("./playcanvas-stable.min.js")) {
     console.log("Not found PlayCanvas files.");
     return;
   }
@@ -19,22 +21,12 @@ export const sw = (name: string) => {
 
   urls.push(...currentDir);
 
-  let assestsDirectory;
-  if (process.platform === "win32") {
-    assestsDirectory = execSync("ls files/**/**/*/ -1");
-  } else {
-    assestsDirectory = execSync("ls files/**/**/*/");
-  }
-  const assetsUrls = assestsDirectory
-    .toString()
-    .replace(/:\n/g, "")
-    .split("\n\n")
-    .map(i => i.replace(/\n/g, ""));
+  const assetsUrls = readdirRecursively("./files")
 
   urls.push(...assetsUrls);
 
   const urlsToChache = urls
-    .map(i => i && i !== "files" && `\t"./${i}"`)
+    .map(i => i && `\t"${i}"`)
     .filter(i => i)
     .sort();
 
@@ -63,6 +55,7 @@ export const sw = (name: string) => {
       );
     });
     `;
-
+  
+    console.log(output)
   fs.writeFileSync("./serviceWorker.js", output);
 };
