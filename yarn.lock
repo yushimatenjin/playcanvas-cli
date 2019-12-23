@@ -84,10 +84,10 @@
   version "12.7.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.4.tgz#64db61e0359eb5a8d99b55e05c729f130a678b04"
 
-"@types/node@^12.12.7":
-  version "12.12.20"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.20.tgz#7b693038ce661fe57a7ffa4679440b5e7c5e8b99"
-  integrity sha512-VAe+DiwpnC/g448uN+/3gRl4th0BTdrR9gSLIOHA+SUQskaYZQDOHG7xmjiE7JUhjbXnbXytf6Ih+/pA6CtMFQ==
+"@types/node@^12.12.21":
+  version "12.12.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.21.tgz#aa44a6363291c7037111c47e4661ad210aded23f"
+  integrity sha512-8sRGhbpU+ck1n0PGAUgVrWrWdjSW2aqNeyC15W88GRsMpSwzv6RJGlLhE7s2RhVSOdyDmxbqlWSeThq4/7xqlA==
 
 "@types/playcanvas@^1.23.0":
   version "1.23.0"
@@ -2242,10 +2242,10 @@ playcanvas@*:
   version "1.23.1"
   resolved "https://registry.yarnpkg.com/playcanvas/-/playcanvas-1.23.1.tgz#aaec1790eec84323577ba2291ed9d07468ce9f74"
 
-playcanvas@^1.23.4:
-  version "1.24.2"
-  resolved "https://registry.yarnpkg.com/playcanvas/-/playcanvas-1.24.2.tgz#422c31f6517378318623998933ad7a6ed80c15da"
-  integrity sha512-gddjm+CvIkTya5Fgi3dqhxKj9I+6kNgQpgafiIwjy0uIJ0/PWzah89e4uzvlbOoTz3CTM7D5B9iD25Xbv/peeA==
+playcanvas@^1.24.3:
+  version "1.24.3"
+  resolved "https://registry.yarnpkg.com/playcanvas/-/playcanvas-1.24.3.tgz#d4f1703919cc34d5fe8f94378b38574b0c3365d5"
+  integrity sha512-rQUx1ZJAsClrSBstAedL32jscJd4CqWCpmjohB2tFKn890hKjrv4LA1nU8fwygvNWL6UfZJrs2mIJz2uS3gcWA==
 
 pn@^1.1.0:
   version "1.1.0"
@@ -2982,10 +2982,15 @@ typedoc@^0.15.1:
     typedoc-default-themes "^0.6.2"
     typescript "3.7.x"
 
-typescript@3.7.x, typescript@^3.2.1, typescript@^3.7.2:
+typescript@3.7.x, typescript@^3.2.1:
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.3.tgz#b36840668a16458a7025b9eabfad11b66ab85c69"
   integrity sha512-Mcr/Qk7hXqFBXMN7p7Lusj1ktCBydylfQM/FZCk5glCNQJrCUKPkMHdo9R0MTFWsC/4kPFvDS0fDPvukfCkFsw==
+
+typescript@^3.7.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.4.tgz#1743a5ec5fef6a1fa9f3e4708e33c81c73876c19"
+  integrity sha512-A25xv5XCtarLwXpcDNZzCGvW2D1S3/bACratYBx2sax8PefsFhlYmkQicKHvpYflFS8if4zne5zT5kpJ7pzuvw==
 
 uglify-js@^3.1.4:
   version "3.7.2"
