@@ -1,20 +1,42 @@
+このリポジトリはPlayCanvasエディターを使用した際に使えるツールのリポジトリになります。
+
+```bash
+playcanvas-tools コマンド名 引数
+```
+
+コマンド種類
+- init
+- download
+- upload
+- copy
+
+引数
+- -t token
+- -p projectId 
+- -s scenes 
+- -b branchId 
+- -n projectName 
+- -r remotePath 
+
 ## Installation
 `yarn global add playcanvas-tools`
 
-##  
 
-Create config file(`playcanvas.json`)
+### 1. *init*コマンド playcanvas.jsonを作成
+
+コンフィグファイル(`playcanvas.json`)を作成する
 ```bash
 playcanvas-cli init
 ```
 
 
-Downlaod Project.
+### 2. *download*コマンド playcanvas.jsonを元にプロジェクトをダウンロード
+
 ```
 playcanvas-cli download
 ```
 
-Create ServiceWorker.
+### 3. *sw*コマンド オフラインキャッシュをする為のserviceWorker.js
 ```
 playcanvas-cli sw
 ```
