@@ -133,7 +133,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
         type: "input",
         name: "remotePath",
         message: "",
-        default: "dev"
+        default: "scripts"
       }
     ]);
     const projectName = projectNameAnswer.inputProjectName;
