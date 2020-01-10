@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { projectInit } from "./project-create";
+import { generateFromTemplate } from "./utils/";
 import path from "path";
 
 export const create = async () => {
@@ -7,8 +7,8 @@ export const create = async () => {
 
     const options = require(path.join(process.cwd(), "./", "playcanvas.json"));
 
-    projectInit(options.projectName, options);
+    generateFromTemplate(options.projectName, options);
   } catch (e) {
-    console.log("Not found");
+    console.log(`*** Please run "playcanvas-cli init" ***`);
   }
 };

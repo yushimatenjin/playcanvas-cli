@@ -92,7 +92,7 @@ export const download = async () => {
       console.log("Download failed.");
     }
   } else {
-    console.log('Please run "playcanvas-cli init"');
+    console.log('*** Please run "playcanvas-cli init" ***');
   }
 };
 // ≶

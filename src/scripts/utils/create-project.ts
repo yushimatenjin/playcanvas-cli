@@ -1,12 +1,12 @@
 import path from "path";
 import fs from "fs-extra";
 
-export const projectInit = (
+export const generateFromTemplate = (
   projectName: string,
   settingsJson: Record<string, any>,
   template = "hot-reload"
 ) => {
-  const templatePath = path.join(__dirname, "..", "template", template);
+  const templatePath = path.join(__dirname, "..", "..", "template", template);
   const distPath = path.join(".", projectName);
 
   if (!fs.existsSync(distPath)) {

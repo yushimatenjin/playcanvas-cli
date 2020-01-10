@@ -1,2 +1,4 @@
 import gist from "./gist";
-export { gist };
+import {generateFromTemplate} from "./create-project";
+
+export { gist, generateFromTemplate };
