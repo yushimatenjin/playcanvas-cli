@@ -1,3 +1,4 @@
+# PlayCanvas CLI
 このリポジトリはPlayCanvasエディターを使用した際に使えるツールのリポジトリになります。
 
 ```bash
@@ -9,6 +10,7 @@ playcanvas-tools コマンド名 引数
 - download
 - upload
 - copy
+- sw
 
 引数
 - -t token
@@ -19,10 +21,11 @@ playcanvas-tools コマンド名 引数
 - -r remotePath 
 
 ## Installation
+
 `yarn global add playcanvas-tools`
 
 
-### 1. *init*コマンド playcanvas.jsonを作成
+### 1. *init*コマンドを使用してplaycanvas.jsonを作成
 
 コンフィグファイル(`playcanvas.json`)を作成する
 ```bash
@@ -38,13 +41,13 @@ playcanvas-cli download
 
 ### 3. *sw*コマンド オフラインキャッシュをする為のserviceWorker.js
 ```
-playcanvas-cli sw
+playcanvas-cli sw --name キャッシュ名
 ```
 
+#### CI等から`playcanvas.json`を作成する
 
+`playcanvas-cli init`コマンドではインタラクティブに作成をするが、CIなどでは１行のコマンドとして入力することで`playcanvas.json`を作成することができる。
 
-
-#### circle ci
 ```
 $ playcanvas-cli <input>
 Options(required)
