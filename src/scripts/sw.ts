@@ -56,6 +56,18 @@ export const sw = (name: string) => {
         })
       );
     });
+
+    self.addEventListener('activate', function(evt) {
+      evt.waitUntil(
+        caches.keys().then(function(keys) {
+              var promises = [];
+              keys.forEach(function(cacheName) {
+                if (cacheName != CACHE_NAME)
+                  promises.push(caches.delete(cacheName));
+              });
+              return Promise.all(promises);
+            }));
+    });
     `;
   
     console.log(output)
