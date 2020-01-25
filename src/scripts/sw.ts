@@ -67,6 +67,9 @@ export const sw = (name: string) => {
           let fetchRequest = event.request.clone();
           return fetch(fetchRequest)
             .then((response) => {
+              if (!response || response.status !== 200 || response.type !== 'basic') {
+                return response;
+              }
               let responseToCache = response.clone();
               caches.open(CACHE_NAME)
                 .then((cache) => {
