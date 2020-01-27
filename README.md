@@ -1,7 +1,8 @@
-![out](https://user-images.githubusercontent.com/39250588/73151323-a2f4b280-40c2-11ea-8999-70fd0c3b1021.gif)
 
 # PlayCanvas CLI
 このリポジトリはPlayCanvasエディターを使用した際に使えるツールのリポジトリになります。
+
+<img src="https://user-images.githubusercontent.com/39250588/73151323-a2f4b280-40c2-11ea-8999-70fd0c3b1021.gif" width="340px" height="340px" />
 
 ```bash
 playcanvas-tools コマンド名 引数
