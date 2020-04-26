@@ -11,7 +11,6 @@ playcanvas-tools コマンド名 引数
 - init
 - download
 - upload
-- copy
 - sw
 
 引数

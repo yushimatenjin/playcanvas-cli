@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { create, init, download, upload, sw, copy } from "../scripts/commands";
+import { create, init, download, upload, sw } from "../scripts/commands";
 import meow from "meow";
 
 const cli = meow(
@@ -78,10 +78,6 @@ switch (script) {
   }
   case "upload": {
     upload(cli.flags.url);
-    break;
-  }
-  case "copy": {
-    copy(cli.flags.url);
     break;
   }
   case "sw": {
