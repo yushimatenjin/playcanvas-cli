@@ -5,7 +5,6 @@ import { sleep } from "./helpers/sleep";
 import axios from "axios";
 import extract from "extract-zip";
 import path from "path";
-import { promisify } from "util";
 import ProgressBar from "progress";
 
 const getDownloadUrl = async (
@@ -31,23 +30,9 @@ export const download = async () => {
     complete: "≶",
     total: 50
   });
-  const {
-    accessToken,
-    scenes,
-    projectId,
-    branchId,
-    projectName,
-    remotePath
-  } = options;
+  const { accessToken, scenes, projectId, branchId, projectName } = options;
 
-  if (
-    accessToken &&
-    scenes &&
-    projectId &&
-    branchId &&
-    projectName &&
-    remotePath
-  ) {
+  if (accessToken && scenes && projectId && branchId && projectName) {
     const playcanvas = new PlayCanvas(options);
     try {
       const zipFileName = `${projectName}.zip`;
@@ -55,7 +40,7 @@ export const download = async () => {
       const projectFilePath = path.join(path.resolve(""), projectName);
 
       if (fs.existsSync(projectFilePath)) {
-        console.log(`${projectName} is already exists`);
+        console.log(`${projectName} already exists`);
         return;
       }
       progress.tick(5);
@@ -80,11 +65,10 @@ export const download = async () => {
         .pipe(fs.createWriteStream(zipFilePath))
         .on("close", async () => {
           progress.tick(15);
-          const unzip = promisify(extract);
-          await unzip(zipFilePath, { dir: projectFilePath });
+          await extract(zipFilePath, { dir: projectFilePath });
           progress.tick(20);
 
-          fs.removeSync(zipFilePath);
+          fs.remove(zipFilePath);
           console.log(`created >>>  ${projectName}`);
         });
     } catch (e) {
