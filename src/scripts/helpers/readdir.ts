@@ -6,7 +6,7 @@ const readdirRecursively = (dir: string, files: Array<string> = [""]) => {
   for (const dirent of dirents) {
     if (dirent.isDirectory()) dirs.push(`${dir}/${dirent.name}`);
     if (dirent.isFile()) {
-      const filePath = `${dir}/${dirent.name}`
+      const filePath = `${dir}/${dirent.name}`;
       files.push(filePath);
     }
   }
@@ -15,4 +15,4 @@ const readdirRecursively = (dir: string, files: Array<string> = [""]) => {
   }
   return files;
 };
-export { readdirRecursively }  
+export { readdirRecursively };

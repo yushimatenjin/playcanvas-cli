@@ -1,5 +1,5 @@
-import fs from 'fs'
-import { readdirRecursively } from './helpers/readdir'
+import fs from "fs";
+import { readdirRecursively } from "./helpers/readdir";
 
 export const sw = (name: string) => {
   if (!name) {
@@ -9,10 +9,11 @@ export const sw = (name: string) => {
 
   const path = process.cwd();
 
-  const currentDir = fs.readdirSync(path, { withFileTypes: true }).filter(file => !file.isDirectory())
+  const currentDir = fs
+    .readdirSync(path, { withFileTypes: true })
+    .filter(file => !file.isDirectory())
     .map(file => `./${file.name}`);
 
-    
   if (!currentDir.includes("./playcanvas-stable.min.js")) {
     console.log("Not found PlayCanvas files.");
     return;
@@ -21,7 +22,7 @@ export const sw = (name: string) => {
 
   urls.push(...currentDir);
 
-  const assetsUrls = readdirRecursively("./files")
+  const assetsUrls = readdirRecursively("./files");
 
   urls.push(...assetsUrls);
 
@@ -82,7 +83,7 @@ export const sw = (name: string) => {
     });
 
     `;
-  
-    console.log(output)
+
+  console.log(output);
   fs.writeFileSync("./serviceWorker.js", output);
 };
