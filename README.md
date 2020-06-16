@@ -1,19 +1,19 @@
 # PlayCanvas CLI
 
-このリポジトリは PlayCanvas エディターを使用した際に使えるツールのリポジトリになります。
+This is a repository of tools that can be used when using the PlayCanvas editor.  
 
 ```bash
-playcanvas-tools コマンド名 引数
+playcanvas-tools command
 ```
 
-コマンド種類
+Command list
 
 - init
 - download
 - upload
 - sw
 
-引数
+Arguments
 
 - -t token
 - -p projectId
@@ -26,30 +26,30 @@ playcanvas-tools コマンド名 引数
 
 `yarn global add playcanvas-tools`
 
-## PlayCanvas Editor製のプロジェクトをPlayCanvas CLIを使用して PWA 化する。
+## Convert the PlayCanvas Editor project to PWA using PlayCanvas CLI.
 
-### 1. *init*コマンドを使用して playcanvas.json を作成
+### 1. Create playcanvas.json using *init* command
 
-コンフィグファイル(`playcanvas.json`)を作成する
+Create a config file (`playcanvas.json`)
 
 ```bash
 playcanvas-cli init
 ```
 
-### 2. *download*コマンド playcanvas.json を元にプロジェクトをダウンロード
+### 2. Download project based on *download* command playcanvas.json
 
 ```
-cd プロジェクト名
+cd projectname
 playcanvas-cli download
 ```
 
-### 3. *sw*コマンド オフラインキャッシュをする為の serviceWorker.js
+### 3. *sw* command serviceWorker.js for offline caching
 
 ```
-playcanvas-cli sw --name キャッシュ名
+playcanvas-cli sw --name cachename
 ```
 
-### 4. index.html から serviveWorker を読み込む
+### 4. Load serviveWorker from index.html
 
 ```index.html
 <!-- index.html -->
@@ -69,17 +69,16 @@ if ("serviceWorker" in navigator) {
 ...
 ```
 
-### 5. manifest.jsonの値を変更する
-
+### 5. Change the value of manifest.json
 https://developer.mozilla.org/ja/docs/Mozilla/Add-ons/WebExtensions/manifest.json
 
 ```manifest.json
 {
-    "name": "**プロジェクト名**",
-    "short_name": "**プロジェクト名**",
+    "name": "**projectname**",
+    "short_name": "**projectname**",
     "icons": [
       {
-        "src": "**ロゴ**",
+        "src": "**logo**",
         "sizes": "192x192",
         "type": "image/png"
       }
@@ -92,9 +91,9 @@ https://developer.mozilla.org/ja/docs/Mozilla/Add-ons/WebExtensions/manifest.jso
 ```
 
 
-## CIから`playcanvas.json`を作成する
+## Create `playcanvas.json` from CI
 
-`playcanvas-cli init`コマンドではインタラクティブに作成をするが、CI などでは１行のコマンドとして入力することで`playcanvas.json`を作成することができる。
+You can create it interactively with the `playcanvas-cli init` command, but you can create `playcanvas.json` by entering it as a one-line command in CI etc.
 
 ```
 $ playcanvas-cli <input>
