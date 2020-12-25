@@ -1,7 +1,7 @@
 import fs from "fs";
 import { readdirRecursively } from "./helpers/readdir";
 
-export const sw = (name: string) => {
+export const sw = (name: string | undefined) => {
   if (!name) {
     console.log("Name is requried.");
     return;
