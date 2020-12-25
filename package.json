@@ -1,7 +1,7 @@
 {
   "name": "playcanvas-tools",
   "description": "The PlayCanvas Command Line Tools.",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": "yushimatenjin <example@example.com>",
   "bin": {
     "playcanvas-cli": "built/bin/playcanvas-cli.js"
