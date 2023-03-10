@@ -7,21 +7,20 @@ import extract from "extract-zip";
 import path from "path";
 import ProgressBar from "progress";
 
-const getDownloadUrl = async (
+const getArchiveUrl = async (
   jobId: number,
   count: number,
   playcanvas: PlayCanvas
 ): Promise<string | null> => {
   const { data } = await playcanvas.getJob(jobId);
   const { url } = data;
-  console.log(data, "logloglog");
   if (url) {
     return url;
   } else if (!url && count === 10) {
     return null;
   } else {
     await sleep(1000);
-    return await getDownloadUrl(jobId, ++count, playcanvas);
+    return await getArchiveUrl(jobId, ++count, playcanvas);
   }
 };
 
@@ -32,7 +31,6 @@ export const archive = async () => {
     total: 50
   });
   const { accessToken, scenes, projectId, branchId, projectName } = options;
-
   if (accessToken && scenes && projectId && branchId && projectName) {
     const playcanvas = new PlayCanvas(options);
     try {
@@ -46,20 +44,14 @@ export const archive = async () => {
       }
       progress.tick(5);
       const file = await playcanvas.archiveProject(projectId);
-      console.log("--------")
-      console.log(file)
-      console.log("--------")
-
       const jobId = file.id;
       progress.tick(10);
 
-      const url = await getDownloadUrl(jobId, 0, playcanvas);
-      console.log("-------",url, "-------- download url")
+      const url = await getArchiveUrl(jobId, 0, playcanvas);
       if (!url) {
         console.log("Please one more try.");
         return;
       }
-      console.log(url)
 
       const { data } = await axios({
         url: url,
