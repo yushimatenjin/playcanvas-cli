@@ -16,7 +16,7 @@
     "fs-extra": "^9.1.0",
     "inquirer": "^8.0.0",
     "meow": "^9.0.0",
-    "playcanvas-node": "1.8.0",
+    "playcanvas-node": "1.8.1",
     "progress": "^2.0.3"
   },
   "devDependencies": {

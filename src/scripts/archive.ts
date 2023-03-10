@@ -44,8 +44,8 @@ export const archive = async (config?: ArchiveConfig) => {
     options = config;
   }
     
-  const { accessToken, projectId, branchId, projectName } = options;
-  if (accessToken  && projectId && branchId && projectName) {
+  const { accessToken, projectId, projectName } = options;
+  if (accessToken  && projectId && projectName) {
     const playcanvas = new PlayCanvas(options);
     try {
       const zipFileName = `${projectName}.zip`;
