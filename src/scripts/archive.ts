@@ -24,14 +24,28 @@ const getArchiveUrl = async (
   }
 };
 
-export const archive = async () => {
-  const options = fs.readJSONSync("./playcanvas.json");
+type ArchiveConfig = {
+  accessToken: string;
+  projectId: number;
+  projectName: string;
+  branchId?: string;
+}
+export const archive = async (config?: ArchiveConfig) => {
   const progress = new ProgressBar("exporting [:bar] :percent :etas", {
     complete: "≶",
     total: 50
   });
-  const { accessToken, scenes, projectId, branchId, projectName } = options;
-  if (accessToken && scenes && projectId && branchId && projectName) {
+
+  let options: ArchiveConfig;
+
+  if(!config){
+    options = fs.readJSONSync("./playcanvas.json") as ArchiveConfig;
+  }else{
+    options = config;
+  }
+    
+  const { accessToken, projectId, branchId, projectName } = options;
+  if (accessToken  && projectId && branchId && projectName) {
     const playcanvas = new PlayCanvas(options);
     try {
       const zipFileName = `${projectName}.zip`;
