@@ -11,6 +11,7 @@ Command list
 - init
 - download
 - upload
+- archive
 - sw
 
 Arguments
