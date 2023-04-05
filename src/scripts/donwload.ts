@@ -6,11 +6,13 @@ import axios from "axios";
 import extract from "extract-zip";
 import path from "path";
 import ProgressBar from "progress";
+import meow from "meow";
+const error = meow("error", {});
 
 const getDownloadUrl = async (
   jobId: number,
   count: number,
-  playcanvas: PlayCanvas
+  playcanvas: PlayCanvas,
 ): Promise<string | null> => {
   const { data } = await playcanvas.getJob(jobId);
   const { download_url } = data;
@@ -28,7 +30,7 @@ export const download = async () => {
   const options = fs.readJSONSync("./playcanvas.json");
   const progress = new ProgressBar("downloading [:bar] :percent :etas", {
     complete: "≶",
-    total: 50
+    total: 50,
   });
   const { accessToken, scenes, projectId, branchId, projectName } = options;
 
@@ -58,7 +60,7 @@ export const download = async () => {
       const { data } = await axios({
         url: download_url,
         method: "GET",
-        responseType: "stream"
+        responseType: "stream",
       });
 
       await data
@@ -74,6 +76,7 @@ export const download = async () => {
     } catch (e) {
       console.log(e);
       console.log("Download failed.");
+      error.showHelp(2);
     }
   } else {
     console.log('*** Please run "playcanvas-cli init" ***');

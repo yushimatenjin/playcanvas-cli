@@ -1,5 +1,12 @@
 #!/usr/bin/env node
-import { create, init, download, upload, sw, archive } from "../scripts/commands";
+import {
+  archive,
+  create,
+  download,
+  init,
+  sw,
+  upload,
+} from "../scripts/commands";
 import meow from "meow";
 
 const cli = meow(
@@ -28,41 +35,40 @@ const cli = meow(
     flags: {
       accessToken: {
         type: "string",
-        alias: "t"
+        alias: "t",
       },
       projectId: {
         type: "string",
-        alias: "p"
+        alias: "p",
       },
       scenes: {
         type: "string",
-        alias: "s"
+        alias: "s",
       },
       branchId: {
         type: "string",
-        alias: "b"
+        alias: "b",
       },
       projectName: {
         type: "string",
-        alias: "n"
+        alias: "n",
       },
       remotePath: {
         type: "string",
-        alias: "r"
+        alias: "r",
       },
       url: {
         type: "string",
-        alias: "u"
+        alias: "u",
       },
       name: {
-        type: "string"
-      }
-    }
-  }
+        type: "string",
+      },
+    },
+  },
 );
 
 const script = cli.input[0];
-
 switch (script) {
   case "create": {
     create();
