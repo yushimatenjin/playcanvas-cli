@@ -114,4 +114,3 @@ $ playcanvas-cli -t "$PLAYCANVAS_ACCESS_TOKEN" -p "$PLAYCANVAS_PROJECT_ID" -s "$
 $ playcanvas-cli -t token -p projectId -s scenes -b branchId -n projectName -r remotePath
 ```
 
-<img src="https://user-images.githubusercontent.com/39250588/73151323-a2f4b280-40c2-11ea-8999-70fd0c3b1021.gif" width="340px" height="340px" />
