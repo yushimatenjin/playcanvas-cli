@@ -29,23 +29,23 @@ type ArchiveConfig = {
   projectId: number;
   projectName: string;
   branchId?: string;
-}
+};
 export const archive = async (config?: ArchiveConfig) => {
   const progress = new ProgressBar("exporting [:bar] :percent :etas", {
     complete: "≶",
-    total: 50
+    total: 50,
   });
 
   let options: ArchiveConfig;
 
-  if(!config){
+  if (!config) {
     options = fs.readJSONSync("./playcanvas.json") as ArchiveConfig;
-  }else{
+  } else {
     options = config;
   }
-    
+
   const { accessToken, projectId, projectName } = options;
-  if (accessToken  && projectId && projectName) {
+  if (accessToken && projectId && projectName) {
     const playcanvas = new PlayCanvas(options);
     try {
       const zipFileName = `${projectName}.zip`;
@@ -70,7 +70,7 @@ export const archive = async (config?: ArchiveConfig) => {
       const { data } = await axios({
         url: url,
         method: "GET",
-        responseType: "stream"
+        responseType: "stream",
       });
 
       await data
