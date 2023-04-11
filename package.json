@@ -17,7 +17,8 @@
     "inquirer": "^8.0.0",
     "meow": "^9.0.0",
     "playcanvas-node": "1.8.1",
-    "progress": "^2.0.3"
+    "progress": "^2.0.3",
+    "sharp": "^0.32.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -28,6 +29,7 @@
     "@types/node": "^14.14.37",
     "@types/playcanvas": "^1.23.0",
     "@types/progress": "^2.0.3",
+    "@types/sharp": "^0.31.1",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
     "eslint-config-prettier": "^8.1.0",
@@ -60,12 +62,13 @@
   "main": "built/bin/playcanvas-cli.js",
   "repository": "git@github.com:yushimatenjin/playcanvas-cli.git",
   "scripts": {
-    "build": "yarn copy-template && tsc --project .",
+    "build": "tsc --project .",
     "build:doc": "typedoc src && touch docs/.nojekyll",
     "copy-template": "rm -rf built && mkdir built && cp -R src/template/ built/template",
+    "format": "prettier src/**/*.ts --write",
     "lint": "eslint src/**/*.ts",
     "prepublishOnly": "yarn build",
-    "start": "yarn copy-template && tsc --project . && node ./built/bin/playcanvas-cli.js",
+    "start": "tsc --project . && node ./built/bin/playcanvas-cli.js",
     "start:init": "yarn start init"
   }
 }
