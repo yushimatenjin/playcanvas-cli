@@ -31,7 +31,7 @@ async function convertToWebp(
   if (imageExtensions.includes(ext.toLowerCase())) {
     const outputPath = path.join(
       path.dirname(url),
-      path.basename(url, ext) + ".webp"
+      `${path.basename(url, ext)}.webp`
     );
     const result = await sharp(url).webp(webpOptions).toFile(outputPath);
     // output path and source and destnation file size
@@ -74,7 +74,6 @@ async function convertImageExtensionsToWebp(config: Config, flags: Flags) {
   for (const key of assetKeys) {
     const asset = config.assets[key];
     if (!isTextureAssetType(asset.type, flags.convertOptions)) continue;
-    const filename = asset.file.filename;
     const url = asset.file.url;
 
     // add the asset to the target list
@@ -82,14 +81,16 @@ async function convertImageExtensionsToWebp(config: Config, flags: Flags) {
 
     // update the filename and url to use .webp
     if (result === undefined) continue;
-    sourceTotalSize += asset.file.size;
-    destinationTotalSize += result.size;
-    const updatedFilename = filename.replace(/\.(png|jpe?g|gif)$/i, ".webp");
+
+    // update the config
     const updatedUrl = url.replace(/\.(png|jpe?g|gif)$/i, ".webp");
     const updatedSize = result.size;
-    asset.file.filename = updatedFilename;
     asset.file.url = updatedUrl;
     asset.file.size = updatedSize;
+    
+    // culculate the total size
+    sourceTotalSize += asset.file.size;
+    destinationTotalSize += result.size;
   }
 
   console.log("=====================================");

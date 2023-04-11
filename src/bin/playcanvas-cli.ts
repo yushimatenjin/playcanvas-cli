@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import { archive, download, init, sw, upload, webp } from "../scripts/commands";
 import meow from "meow";
 
