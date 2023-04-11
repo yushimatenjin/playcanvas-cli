@@ -12,7 +12,7 @@ const error = meow("error", {});
 const getDownloadUrl = async (
   jobId: number,
   count: number,
-  playcanvas: PlayCanvas,
+  playcanvas: PlayCanvas
 ): Promise<string | null> => {
   const { data } = await playcanvas.getJob(jobId);
   const { download_url } = data;

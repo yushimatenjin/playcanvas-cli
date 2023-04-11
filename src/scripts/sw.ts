@@ -11,8 +11,8 @@ export const sw = (name: string | undefined) => {
 
   const currentDir = fs
     .readdirSync(path, { withFileTypes: true })
-    .filter(file => !file.isDirectory())
-    .map(file => `./${file.name}`);
+    .filter((file) => !file.isDirectory())
+    .map((file) => `./${file.name}`);
 
   if (!currentDir.includes("./playcanvas-stable.min.js")) {
     console.log("Not found PlayCanvas files.");
@@ -27,8 +27,8 @@ export const sw = (name: string | undefined) => {
   urls.push(...assetsUrls);
 
   const urlsToChache = urls
-    .map(i => i && `\t"${i}"`)
-    .filter(i => i)
+    .map((i) => i && `\t"${i}"`)
+    .filter((i) => i)
     .sort();
 
   const output = `

@@ -1,2 +1,3 @@
 import urlJoin from "./url-join";
-export { urlJoin };
+import { formatBytes } from "./format-bytes";
+export { urlJoin, formatBytes };

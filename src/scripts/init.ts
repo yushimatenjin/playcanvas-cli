@@ -13,7 +13,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
       projectId,
       branchId,
       projectName,
-      remotePath
+      remotePath,
     } = options;
 
     if (
@@ -31,7 +31,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
         projectId: Number(projectId),
         branchId,
         projectName,
-        remotePath
+        remotePath,
       };
 
       const distPath = path.join(".");
@@ -48,15 +48,15 @@ export const init = async (options?: PlayCanvasOptions | any) => {
       {
         type: "input",
         name: "projectId",
-        message: `What's your project id https://playcanvas.com/project/`
-      }
+        message: `What's your project id https://playcanvas.com/project/`,
+      },
     ];
 
     if (!accessToken) {
       const authenticate = {
         type: "input",
         name: "accessToken",
-        message: "What's your accessToken"
+        message: "What's your accessToken",
       };
 
       questions.unshift(authenticate);
@@ -66,7 +66,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
     const projectId = ans.projectId as number;
     const playcanvas = new PlayCanvas({
       accessToken,
-      projectId
+      projectId,
     });
 
     const branches = await playcanvas.listBranches();
@@ -74,7 +74,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
       const { id, name } = branch;
       return {
         value: id,
-        name: `${name} | ${id}`
+        name: `${name} | ${id}`,
       };
     });
     const branchAnswer = await inquirer.prompt([
@@ -82,8 +82,8 @@ export const init = async (options?: PlayCanvasOptions | any) => {
         type: "list",
         name: "selectedBranch",
         message: "Please select a branch.",
-        choices: branchChoices
-      }
+        choices: branchChoices,
+      },
     ]);
     const branchId = branchAnswer.selectedBranch;
     const playcanvas2 = new PlayCanvas({ accessToken, projectId, branchId });
@@ -94,7 +94,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
       const { id, name } = scene;
       return {
         name: `${name} | ${id} `,
-        value: id
+        value: id,
       };
     });
 
@@ -103,8 +103,8 @@ export const init = async (options?: PlayCanvasOptions | any) => {
         type: "list",
         name: "selectedScenes",
         message: "Please select a scence.",
-        choices: scenesChoices
-      }
+        choices: scenesChoices,
+      },
     ]);
 
     const scenes = sceneAnswer.selectedScenes;
@@ -112,7 +112,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
       accessToken,
       projectId,
       branchId,
-      scenes
+      scenes,
     });
 
     let remoteProjectName;
@@ -127,14 +127,14 @@ export const init = async (options?: PlayCanvasOptions | any) => {
         type: "input",
         name: "inputProjectName",
         message: "Please input a projectName",
-        default: remoteProjectName
+        default: remoteProjectName,
       },
       {
         type: "input",
         name: "remotePath",
         message: "",
-        default: "scripts"
-      }
+        default: "scripts",
+      },
     ]);
     const projectName = projectNameAnswer.inputProjectName;
     const remotePath = projectNameAnswer.remotePath;
@@ -145,7 +145,7 @@ export const init = async (options?: PlayCanvasOptions | any) => {
       projectId: Number(projectId),
       branchId,
       projectName,
-      remotePath
+      remotePath,
     };
     const distPath = path.join(".");
     const settingsFilePath = path.join(distPath, "playcanvas.json");
