@@ -1,3 +1,5 @@
+[日本語](./README-ja.md)
+
 # PlayCanvas CLI
 
 This is a repository of tools that can be used when using the PlayCanvas editor.  
