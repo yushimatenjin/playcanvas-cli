@@ -7,7 +7,7 @@ const cli = meow(
 	Usage
 	  $ playcanvas-cli <input>
 
-	Args(required)
+	Argments(optional)
     --accessToken -t
     --projectId -p
     --scenes -s
@@ -15,7 +15,7 @@ const cli = meow(
     --projectName -n 
     --remotePath -r
   
-  webp
+  WebP options
   # webp options
     --quality -q # default 80
     --alphaQuality # Quality of alpha layer, number from 0-100 (optional, default 100)
