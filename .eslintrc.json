@@ -1,26 +1,24 @@
 {
+  "env": {
+      "es2021": true,
+      "node": true
+  },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
   ],
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "env": { "node": true, "es6": true },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+      "sourceType": "module",
+      "project": "./tsconfig.json"
   },
+  "plugins": [
+      "@typescript-eslint"
+  ],
   "rules": {
-    "no-console": "off",
-    "no-useless-escape": "off",
-    "@typescript-eslint/camelcase": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-explicit-any": "off"
-  }
+      "@typescript-eslint/no-explicit-any": 1,
+      "@typescript-eslint/no-non-null-assertion": 1
+  },
+  "root": true
 }
