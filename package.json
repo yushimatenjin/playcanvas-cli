@@ -64,7 +64,6 @@
   "scripts": {
     "build": "tsc --project .",
     "build:doc": "typedoc src && touch docs/.nojekyll",
-    "copy-template": "rm -rf built && mkdir built && cp -R src/template/ built/template",
     "format": "prettier src/**/*.ts --write",
     "lint": "eslint src/**/*.ts",
     "prepublishOnly": "yarn build",

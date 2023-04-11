@@ -69,9 +69,11 @@
 					<li>init</li>
 					<li>download</li>
 					<li>upload</li>
+					<li>archive</li>
 					<li>sw</li>
+					<li>webp</li>
 				</ul>
-				<p>Arguments</p>
+				<p>Arguments (optional)</p>
 				<ul>
 					<li>-t token</li>
 					<li>-p projectId</li>
@@ -79,6 +81,26 @@
 					<li>-b branchId</li>
 					<li>-n projectName</li>
 					<li>-r remotePath</li>
+				</ul>
+				<p>webp options (optional) </p>
+				<pre><code class="language-bash"><span style="color: #000000">playcanvas-cli webp -q 80 --alphaQuality 100 --lossless </span><span style="color: #795E26">false</span><span style="color: #000000"> --nearLossless 100 --smartSubsample </span><span style="color: #795E26">false</span><span style="color: #000000"> --font </span><span style="color: #795E26">true</span><span style="color: #000000"> --texture </span><span style="color: #795E26">true</span><span style="color: #000000"> --textureatlas </span><span style="color: #795E26">true</span><span style="color: #000000"> --removeSource </span><span style="color: #795E26">false</span><span style="color: #000000"> --configFilePath ./config.json --outputConfigFilePath ./config_webp.json</span>
+</code></pre>
+				<ul>
+					<li> --quality -q # default 80</li>
+					<li> --alphaQuality # Quality of alpha layer, number from 0-100 (optional, default 100)</li>
+					<li> --lossless -l #  Use near_lossless compression mode (optional, default false)</li>
+					<li> --nearLossless # Near lossless encoding, number from 0-100 (optional, default 100)</li>
+					<li> --smartSubsample # Use smart subsampling (optional, default false)</li>
+				</ul>
+				<p><a href="https://sharp.pixelplumbing.com/api-output#webp">full document</a></p>
+				<p>convert options</p>
+				<ul>
+					<li>--font # font assets for conversion.  ( default true  ) ※ Please set it to false when using large Japanese.</li>
+					<li>--texture # texture assets for conversion ( default true  )</li>
+					<li>--textureatlas # textureatlas assets for conversion ( default true  )</li>
+					<li>--removeSource # remove source file after conversion ( default false  )</li>
+					<li>--configFilePath # config file path default ./config.json</li>
+					<li>--outputConfigFilePath # output config file path default ./config_webp.json</li>
 				</ul>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
@@ -147,23 +169,44 @@ if (&quot;serviceWorker&quot; in navigator) {
 					<h2>Create <code>playcanvas.json</code> from CI</h2>
 				</a>
 				<p>You can create it interactively with the <code>playcanvas-cli init</code> command, but you can create <code>playcanvas.json</code> by entering it as a one-line command in CI etc.</p>
-				<pre><code><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> &lt;</span><span style="color: #001080">input</span><span style="color: #000000">&gt;</span>
-<span style="color: #795E26">Options</span><span style="color: #000000">(</span><span style="color: #001080">required</span><span style="color: #000000">)</span>
-<span style="color: #000000">--</span><span style="color: #001080">accessToken</span><span style="color: #000000"> -</span><span style="color: #001080">t</span>
-<span style="color: #000000">--</span><span style="color: #001080">projectId</span><span style="color: #000000"> -</span><span style="color: #001080">p</span>
-<span style="color: #000000">--</span><span style="color: #001080">scenes</span><span style="color: #000000"> -</span><span style="color: #001080">s</span>
-<span style="color: #000000">--</span><span style="color: #001080">branchId</span><span style="color: #000000"> -</span><span style="color: #001080">b</span>
-<span style="color: #000000">--</span><span style="color: #001080">projectName</span><span style="color: #000000"> -</span><span style="color: #001080">n</span>
-<span style="color: #000000">--</span><span style="color: #001080">remotePath</span><span style="color: #000000"> -</span><span style="color: #001080">r</span>
+				<pre><code><span style="color: #001080">Usage</span>
+<span style="color: #000000">  </span><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> &lt;</span><span style="color: #001080">input</span><span style="color: #000000">&gt; # </span><span style="color: #001080">init</span><span style="color: #000000"> </span><span style="color: #001080">download</span><span style="color: #000000"> </span><span style="color: #001080">upload</span><span style="color: #000000"> </span><span style="color: #001080">archive</span><span style="color: #000000"> </span><span style="color: #001080">sw</span><span style="color: #000000"> </span><span style="color: #001080">webp</span>
+
+<span style="color: #795E26">Argments</span><span style="color: #000000">(</span><span style="color: #001080">optional</span><span style="color: #000000">)</span>
+<span style="color: #000000">  --</span><span style="color: #001080">accessToken</span><span style="color: #000000"> -</span><span style="color: #001080">t</span>
+<span style="color: #000000">  --</span><span style="color: #001080">projectId</span><span style="color: #000000"> -</span><span style="color: #001080">p</span>
+<span style="color: #000000">  --</span><span style="color: #001080">scenes</span><span style="color: #000000"> -</span><span style="color: #001080">s</span>
+<span style="color: #000000">  --</span><span style="color: #001080">branchId</span><span style="color: #000000"> -</span><span style="color: #001080">b</span>
+<span style="color: #000000">  --</span><span style="color: #001080">projectName</span><span style="color: #000000"> -</span><span style="color: #001080">n</span><span style="color: #000000"> </span>
+<span style="color: #000000">  --</span><span style="color: #001080">remotePath</span><span style="color: #000000"> -</span><span style="color: #001080">r</span>
+
+<span style="color: #001080">WebP</span><span style="color: #000000"> </span><span style="color: #001080">options</span>
+<span style="color: #000000"># </span><span style="color: #001080">webp</span><span style="color: #000000"> </span><span style="color: #001080">options</span>
+<span style="color: #000000">  --</span><span style="color: #001080">quality</span><span style="color: #000000"> -</span><span style="color: #001080">q</span><span style="color: #000000"> # </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #098658">80</span>
+<span style="color: #000000">  --</span><span style="color: #001080">alphaQuality</span><span style="color: #000000"> # </span><span style="color: #001080">Quality</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">alpha</span><span style="color: #000000"> </span><span style="color: #001080">layer</span><span style="color: #000000">, </span><span style="color: #001080">number</span><span style="color: #000000"> </span><span style="color: #001080">from</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">-</span><span style="color: #098658">100</span><span style="color: #000000"> (</span><span style="color: #001080">optional</span><span style="color: #000000">, </span><span style="color: #001080">default</span><span style="color: #000000"> </span><span style="color: #098658">100</span><span style="color: #000000">)</span>
+<span style="color: #000000">  --</span><span style="color: #001080">lossless</span><span style="color: #000000"> -</span><span style="color: #001080">l</span><span style="color: #000000"> #  </span><span style="color: #001080">Use</span><span style="color: #000000"> </span><span style="color: #001080">near_lossless</span><span style="color: #000000"> </span><span style="color: #001080">compression</span><span style="color: #000000"> </span><span style="color: #795E26">mode</span><span style="color: #000000"> (</span><span style="color: #001080">optional</span><span style="color: #000000">, </span><span style="color: #001080">default</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">)</span>
+<span style="color: #000000">  --</span><span style="color: #001080">nearLossless</span><span style="color: #000000"> # </span><span style="color: #001080">Near</span><span style="color: #000000"> </span><span style="color: #001080">lossless</span><span style="color: #000000"> </span><span style="color: #001080">encoding</span><span style="color: #000000">, </span><span style="color: #001080">number</span><span style="color: #000000"> </span><span style="color: #001080">from</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">-</span><span style="color: #098658">100</span><span style="color: #000000"> (</span><span style="color: #001080">optional</span><span style="color: #000000">, </span><span style="color: #001080">default</span><span style="color: #000000"> </span><span style="color: #098658">100</span><span style="color: #000000">)</span>
+<span style="color: #000000">  --</span><span style="color: #001080">smartSubsample</span><span style="color: #000000"> # </span><span style="color: #001080">Use</span><span style="color: #000000"> </span><span style="color: #001080">smart</span><span style="color: #000000"> </span><span style="color: #795E26">subsampling</span><span style="color: #000000"> (</span><span style="color: #001080">optional</span><span style="color: #000000">, </span><span style="color: #001080">default</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">)</span>
+
+<span style="color: #000000"># </span><span style="color: #001080">convert</span><span style="color: #000000"> </span><span style="color: #001080">options</span>
+<span style="color: #000000">  --</span><span style="color: #001080">font</span><span style="color: #000000"> # </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">  --</span><span style="color: #001080">texture</span><span style="color: #000000"> # </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">  --</span><span style="color: #001080">textureatlas</span><span style="color: #000000"> # </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">  --</span><span style="color: #001080">removeSource</span><span style="color: #000000"> # </span><span style="color: #001080">remove</span><span style="color: #000000"> </span><span style="color: #001080">source</span><span style="color: #000000"> </span><span style="color: #001080">file</span><span style="color: #000000"> </span><span style="color: #001080">after</span><span style="color: #000000"> </span><span style="color: #001080">conversion</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">  --</span><span style="color: #001080">configFilePath</span><span style="color: #000000"> # </span><span style="color: #001080">config</span><span style="color: #000000"> </span><span style="color: #001080">file</span><span style="color: #000000"> </span><span style="color: #001080">path</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> ./</span><span style="color: #001080">config</span><span style="color: #000000">.</span><span style="color: #001080">json</span>
+<span style="color: #000000">  --</span><span style="color: #001080">outputConfigFilePath</span><span style="color: #000000"> # </span><span style="color: #001080">output</span><span style="color: #000000"> </span><span style="color: #001080">config</span><span style="color: #000000"> </span><span style="color: #001080">file</span><span style="color: #000000"> </span><span style="color: #001080">path</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> ./</span><span style="color: #001080">config_webp</span><span style="color: #000000">.</span><span style="color: #001080">json</span>
+
 <span style="color: #001080">Examples</span>
-<span style="color: #001080">CircleCI</span>
-<span style="color: #000000">--------</span>
-<span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> --</span><span style="color: #001080">accessToken</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_ACCESS_TOKEN&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">projectId</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_ID&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">scenes</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_SCENES&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">branchId</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PLAYCANVAS_BRANCH_ID&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">projectId</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_ID&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">remotePath</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_REMOTE_PATH&quot;</span>
-<span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> -</span><span style="color: #001080">t</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_ACCESS_TOKEN&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">p</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_ID&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">s</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_SCENES&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">b</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PLAYCANVAS_BRANCH_ID&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">n</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_NAME&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">r</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_REMOTE_PATH&quot;</span>
-<span style="color: #000000">--------</span>
-<span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> -</span><span style="color: #001080">t</span><span style="color: #000000"> </span><span style="color: #001080">token</span><span style="color: #000000"> -</span><span style="color: #001080">p</span><span style="color: #000000"> </span><span style="color: #001080">projectId</span><span style="color: #000000"> -</span><span style="color: #001080">s</span><span style="color: #000000"> </span><span style="color: #001080">scenes</span><span style="color: #000000"> -</span><span style="color: #001080">b</span><span style="color: #000000"> </span><span style="color: #001080">branchId</span><span style="color: #000000"> -</span><span style="color: #001080">n</span><span style="color: #000000"> </span><span style="color: #001080">projectName</span><span style="color: #000000"> -</span><span style="color: #001080">r</span><span style="color: #000000"> </span><span style="color: #001080">remotePath</span>
+<span style="color: #000000">  </span><span style="color: #001080">CircleCI</span>
+<span style="color: #000000">  --------</span>
+<span style="color: #000000">  </span><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> --</span><span style="color: #001080">accessToken</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_ACCESS_TOKEN&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">projectId</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_ID&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">scenes</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_SCENES&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">branchId</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PLAYCANVAS_BRANCH_ID&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">projectId</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_ID&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">remotePath</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_REMOTE_PATH&quot;</span>
+<span style="color: #000000">  </span><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> -</span><span style="color: #001080">t</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_ACCESS_TOKEN&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">p</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_ID&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">s</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_SCENES&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">b</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;PLAYCANVAS_BRANCH_ID&quot;</span><span style="color: #000000"> -</span><span style="color: #001080">n</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_PROJECT_NAME&quot;</span><span style="color: #000000"> --</span><span style="color: #001080">r</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;$PLAYCANVAS_REMOTE_PATH&quot;</span>
+<span style="color: #000000">  --------</span>
+<span style="color: #000000">  </span><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> -</span><span style="color: #001080">t</span><span style="color: #000000"> </span><span style="color: #001080">token</span><span style="color: #000000"> -</span><span style="color: #001080">p</span><span style="color: #000000"> </span><span style="color: #001080">projectId</span><span style="color: #000000"> -</span><span style="color: #001080">s</span><span style="color: #000000"> </span><span style="color: #001080">scenes</span><span style="color: #000000"> -</span><span style="color: #001080">b</span><span style="color: #000000"> </span><span style="color: #001080">branchId</span><span style="color: #000000"> -</span><span style="color: #001080">n</span><span style="color: #000000"> </span><span style="color: #001080">projectName</span><span style="color: #000000"> -</span><span style="color: #001080">r</span><span style="color: #000000"> </span><span style="color: #001080">remotePath</span><span style="color: #000000"> </span>
+
+<span style="color: #000000">  </span><span style="color: #001080">WebP</span>
+<span style="color: #000000">  </span><span style="color: #001080">$</span><span style="color: #000000"> </span><span style="color: #001080">playcanvas</span><span style="color: #000000">-</span><span style="color: #001080">cli</span><span style="color: #000000"> </span><span style="color: #001080">webp</span><span style="color: #000000"> -</span><span style="color: #001080">q</span><span style="color: #000000"> </span><span style="color: #098658">80</span><span style="color: #000000"> --</span><span style="color: #001080">lossless</span>
 </code></pre>
-				<img src="https://user-images.githubusercontent.com/39250588/73151323-a2f4b280-40c2-11ea-8999-70fd0c3b1021.gif" width="340px" height="340px" />
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -176,16 +219,22 @@ if (&quot;serviceWorker&quot; in navigator) {
 						<a href="modules/bin_playcanvas_cli.html">bin/playcanvas-<wbr>cli</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/scripts_archive.html">scripts/archive</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/scripts_commands.html">scripts/commands</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/scripts_create.html">scripts/create</a>
+						<a href="modules/scripts_convert_webp.html">scripts/convert-<wbr>webp</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/scripts_donwload.html">scripts/donwload</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/scripts_helpers.html">scripts/helpers</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/scripts_helpers_format_bytes.html">scripts/helpers/format-<wbr>bytes</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/scripts_helpers_readdir.html">scripts/helpers/readdir</a>
@@ -206,10 +255,7 @@ if (&quot;serviceWorker&quot; in navigator) {
 						<a href="modules/scripts_upload.html">scripts/upload</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/scripts_utils.html">scripts/utils</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/scripts_utils_create_project.html">scripts/utils/create-<wbr>project</a>
+						<a href="modules/types_config.html">types/config</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/types_data.html">types/data</a>
