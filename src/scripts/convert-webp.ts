@@ -25,7 +25,8 @@ async function convertToWebp(
   file: File,
   flags: Flags
 ): Promise<sharp.OutputInfo | undefined> {
-  const { url, size, filename} = file;
+  const {  size, filename} = file;
+  const url = decodeURIComponent(file.url);
   const { webpOptions, convertOptions } = flags;
   const ext = path.extname(url);
   if (imageExtensions.includes(ext.toLowerCase())) {
@@ -73,6 +74,8 @@ async function convertImageExtensionsToWebp(config: Config, flags: Flags) {
 
   for (const key of assetKeys) {
     const asset = config.assets[key];
+
+    if(!asset.file  || !asset.file.variants || asset.file.variants.basis) continue;
     if (!isTextureAssetType(asset.type, flags.convertOptions)) continue;
     const url = asset.file.url;
 
@@ -82,15 +85,17 @@ async function convertImageExtensionsToWebp(config: Config, flags: Flags) {
     // update the filename and url to use .webp
     if (result === undefined) continue;
 
+      // culculate the total size
+      sourceTotalSize += asset.file.size;
+      destinationTotalSize += result.size;
+      
     // update the config
     const updatedUrl = url.replace(/\.(png|jpe?g|gif)$/i, ".webp");
     const updatedSize = result.size;
     asset.file.url = updatedUrl;
     asset.file.size = updatedSize;
     
-    // culculate the total size
-    sourceTotalSize += asset.file.size;
-    destinationTotalSize += result.size;
+  
   }
 
   console.log("=====================================");
