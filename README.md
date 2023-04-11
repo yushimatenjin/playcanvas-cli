@@ -1,4 +1,4 @@
-[日本語](./README-ja.md)
+[日本語 (Japanese README.md)](./README-ja.md)
 
 # PlayCanvas CLI
 
@@ -13,21 +13,6 @@ yarn global add playcanvas-tools
 ## Command List
 
 - `init`: This command is used to perform initial setup of a project or application. It creates a configuration file interactively. PlayCanvas [API key](https://playcanvas.com/account) is required. This command needs to be executed before using the `download` | `upload` | `archive` commands.
-
-The generated `playcanvas.json` looks like this:
-
-```playcanvas.json
-{
-	"accessToken":"xxxxxxxxxxxx",
-	"scenes":[xxxxx],
-	"projectId":xxxxx,
-	"branchId":"xxxxxx-xxxxx-xxxxx-xxxxx",
-	"projectName":"xxxxx",
-	"remotePath":"xxxxx"
-}                                              
-```
-However, it is also possible to generate this file without running this command.
-
 -  `download`: This command places the PlayCanvas project in the current directory. It downloads a file with the same content as PlayCanvas Editor's `DOWNLOAD.ZIP`. It is downloaded under the folder name specified by `playcanvas.json`'s `projectName`.
 - `upload`: This command takes a URL as an argument and uploads it to PlayCanvas (created mainly for the purpose of uploading files from Gist). It is uploaded to the PlayCanvas folder specified by `playcanvas.json`'s `remotePath`.
 - `archive`: This command exports the PlayCanvas project. It is downloaded under the folder name specified by `playcanvas.json`'s `projectName`.
@@ -49,6 +34,20 @@ playcanvas-cli init
 - -n projectName
 - -r remotePath
 
+
+The generated `playcanvas.json` looks like this:
+
+```playcanvas.json
+{
+	"accessToken":"xxxxxxxxxxxx",
+	"scenes":[xxxxx],
+	"projectId":xxxxx,
+	"branchId":"xxxxxx-xxxxx-xxxxx-xxxxx",
+	"projectName":"xxxxx",
+	"remotePath":"xxxxx"
+}                                              
+```
+However, it is also possible to generate this file without running this command.
 
 ## `playcanvas-cli download` 
 
