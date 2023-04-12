@@ -135,19 +135,19 @@ https://developer.mozilla.org/ja/docs/Mozilla/Add-ons/WebExtensions/manifest.jso
  Convert to WebP
 
 ```bash
-playcanvas-cli webp -q 80 --alphaQuality 100 --lossless false --nearLossless 100 --smartSubsample false --font true --texture true --textureatlas true --removeSource false --configFilePath ./config.json --outputConfigFilePath ./config_webp.json
+playcanvas-cli webp -q 80 --alphaQuality 100  --nearLossless 100 --smartSubsample false --font true --texture true --textureatlas true --removeSource false --configFilePath ./config.json --outputConfigFilePath ./config_webp.json
 ```
 
 or
 
 ```bash
-npx playcanvas-tools  webp -q 80 --alphaQuality 100 --lossless false --nearLossless 100 --smartSubsample false --font true --texture true --textureatlas true --removeSource false --configFilePath ./config.json --outputConfigFilePath ./config_webp.json
+npx playcanvas-tools  webp -q 80 --alphaQuality 100  --nearLossless 100 --smartSubsample false --font true --texture true --textureatlas true --removeSource false --configFilePath ./config.json --outputConfigFilePath ./config_webp.json
 ```
 
 #### WebP Config 
 -  --quality -q # default 80
 -  --alphaQuality # Quality of alpha layer, number from 0-100 (optional, default 100)
--  --lossless -l #  Use near_lossless compression mode (optional, default false)
+-  --lossless -l #  Use near_lossless compression mode (optional, default `undefined`(font: true, texture:false,  textureatlas:false)  | `true` | `false`)
 -  --nearLossless # Near lossless encoding, number from 0-100 (optional, default 100)
 -  --smartSubsample # Use smart subsampling (optional, default false)
 

@@ -20,7 +20,7 @@ const cli = meow(
   # webp options
     --quality -q # default 80
     --alphaQuality # Quality of alpha layer, number from 0-100 (optional, default 100)
-    --lossless -l #  Use near_lossless compression mode (optional, default false)
+    --lossless -l #  Use near_lossless compression mode (optional, default undefined )
     --nearLossless # Near lossless encoding, number from 0-100 (optional, default 100)
     --smartSubsample # Use smart subsampling (optional, default false)
 
@@ -45,6 +45,7 @@ const cli = meow(
 
 `,
   {
+    booleanDefault: undefined,
     flags: {
       accessToken: {
         type: "string",
@@ -88,7 +89,6 @@ const cli = meow(
       },
       lossless: {
         type: "boolean",
-        default: false,
       },
       nearLossless: {
         type: "boolean",
@@ -122,7 +122,7 @@ const cli = meow(
       outputConfigFilePath: {
         type: "string",
         default: "./config_webp.json",
-      }
+      },
     },
   }
 );
@@ -161,7 +161,7 @@ switch (script) {
       textureatlas,
       removeSource,
       configFilePath,
-      outputConfigFilePath
+      outputConfigFilePath,
     } = cli.flags;
     const webpOptions = {
       quality,
@@ -170,6 +170,7 @@ switch (script) {
       nearLossless,
       smartSubsample,
     };
+    console.log(webpOptions);
     const flags = {
       webpOptions,
       convertOptions: {
@@ -178,7 +179,7 @@ switch (script) {
         textureatlas,
         removeSource,
         configFilePath,
-        outputConfigFilePath
+        outputConfigFilePath,
       },
     };
     webp(flags);

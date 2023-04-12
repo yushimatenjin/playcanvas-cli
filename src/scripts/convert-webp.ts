@@ -23,11 +23,15 @@ const imageExtensions = [".png", ".jpg", ".jpeg", ".gif"];
 
 async function convertToWebp(
   file: File,
-  flags: Flags
+  flags: Flags,
+  type: AssetType
 ): Promise<sharp.OutputInfo | undefined> {
-  const {  size, filename} = file;
+  const { size, filename } = file;
   const url = decodeURIComponent(file.url);
   const { webpOptions, convertOptions } = flags;
+  if (type === "font" && webpOptions.lossless === undefined) {
+    webpOptions.lossless = true;
+  }
   const ext = path.extname(url);
   if (imageExtensions.includes(ext.toLowerCase())) {
     const outputPath = path.join(
@@ -37,7 +41,9 @@ async function convertToWebp(
     const result = await sharp(url).webp(webpOptions).toFile(outputPath);
     // output path and source and destnation file size
     console.log(
-      `(${filename} width:${result.width} height:${result.height}) Converted ${url} to ${outputPath}. Size: ${formatBytes(
+      `(${filename} width:${result.width} height:${
+        result.height
+      }) Converted ${url} to ${outputPath}. Size: ${formatBytes(
         size
       )} to ${formatBytes(result.size)}`
     );
@@ -75,28 +81,26 @@ async function convertImageExtensionsToWebp(config: Config, flags: Flags) {
   for (const key of assetKeys) {
     const asset = config.assets[key];
 
-    if(!asset.file) continue;
-    if(asset.file.variants?.basis) continue;
+    if (!asset.file) continue;
+    if (asset.file.variants?.basis) continue;
     if (!isTextureAssetType(asset.type, flags.convertOptions)) continue;
     const url = asset.file.url;
 
     // add the asset to the target list
-    const result = await convertToWebp(asset.file, flags);
+    const result = await convertToWebp(asset.file, flags, asset.type);
 
     // update the filename and url to use .webp
     if (result === undefined) continue;
 
-      // calculate the total size
-      sourceTotalSize += asset.file.size;
-      destinationTotalSize += result.size;
-      
+    // calculate the total size
+    sourceTotalSize += asset.file.size;
+    destinationTotalSize += result.size;
+
     // update the config
     const updatedUrl = url.replace(/\.(png|jpe?g|gif)$/i, ".webp");
     const updatedSize = result.size;
     asset.file.url = updatedUrl;
     asset.file.size = updatedSize;
-    
-  
   }
 
   console.log("=====================================");
@@ -116,7 +120,6 @@ async function convertImageExtensionsToWebp(config: Config, flags: Flags) {
     }%`
   );
   console.log("=====================================");
-
 
   return config;
 }
@@ -146,7 +149,9 @@ export async function webp(flags: Flags) {
   // Write the result to the config_webp.json file
   fs.writeFileSync(outputConfigFilePath, JSON.stringify(result, null, 4));
 
-  console.log(`${outputConfigFilePath} has been generated.`)
+  console.log(`${outputConfigFilePath} has been generated.`);
   console.log("1. Open ./__settings.js__");
-  console.log(`2. Change the value of the "CONFIG_FILENAME" variable from ${configFilePath} to ${outputConfigFilePath}.`);
+  console.log(
+    `2. Change the value of the "CONFIG_FILENAME" variable from ${configFilePath} to ${outputConfigFilePath}.`
+  );
 }

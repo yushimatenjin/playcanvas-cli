@@ -50,23 +50,23 @@ export type Scene = {
 };
 
 type Basis = {
-    "filename": string;
-    "hash": string,
-    "size": number;
-    "sizeGzip": number;
-    "opt": number;
-    "quality": number;
-    "compressionMode": string;
-    "noFlip": boolean;
-    "url": string;
-}
+  filename: string;
+  hash: string;
+  size: number;
+  sizeGzip: number;
+  opt: number;
+  quality: number;
+  compressionMode: string;
+  noFlip: boolean;
+  url: string;
+};
 export type File = {
   filename: string;
   hash: string;
   size: number;
   variants: {
     basis: Basis;
-  }
+  };
   url: string;
 };
 
